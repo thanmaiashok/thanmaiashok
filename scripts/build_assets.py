@@ -335,6 +335,7 @@ def stack():
 
 # ---- advancement toasts ----------------------------------------------
 def toasts():
+    """Advancements: two endless rows scrolling in opposite directions. Every line is backed by a repo, paper or page."""
     items = [("star", "Published Author", "2 IEEE papers in 2025"),
              ("sword", "Shipper", "11 projects built and released"),
              ("steve", "Founder", "Founder of FoxynAI"),
@@ -346,23 +347,51 @@ def toasts():
              ("redstone", "Automation", "Agent that edits 9:16 shorts"),
              ("feather", "Bio Inspired", "Hawk, locust, dragonfly pursuit"),
              ("potion", "Quality Gate", "Wine ML pipeline, 94% accuracy"),
-             ("eye", "Local First", "No paid APIs, runs on a laptop")]
-    COLS, RH = 3, 72
-    rows = (len(items) + COLS - 1) // COLS
-    W, H = 900, rows * RH
-    b = ""
-    for i, (ic, t, d) in enumerate(items):
-        r, c = divmod(i, COLS)
-        x, y = 6 + c * 298, 4 + r * RH
-        b += f'<g class="t" style="animation-delay:{i*0.15:.2f}s"><rect x="{x}" y="{y}" width="288" height="64" fill="#212121"/>'
-        b += f'<rect x="{x}" y="{y}" width="288" height="4" fill="#6a6a6a"/><rect x="{x}" y="{y+60}" width="288" height="4" fill="#0e0e0e"/>'
-        b += f'<rect x="{x}" y="{y}" width="4" height="64" fill="#6a6a6a"/><rect x="{x+284}" y="{y}" width="4" height="64" fill="#0e0e0e"/>'
-        b += slot(x + 12, y + 12, 40) + spr(ic, x + 16, y + 16, 4)
-        b += f'<text x="{x+64}" y="{y+26}" font-size="13" font-weight="bold" fill="#ffff55" {MONO}>Advancement Made!</text>'
-        b += f'<text x="{x+64}" y="{y+42}" font-size="12" fill="#ffffff" {MONO}>{esc(t)}</text>'
-        b += f'<text x="{x+64}" y="{y+56}" font-size="10" fill="#aaaaaa" {MONO}>{esc(d)}</text></g>'
-    style = ".t{animation:sl .6s backwards}@keyframes sl{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:none}}"
-    save("advancements.svg", b, W, H, style)
+             ("eye", "Local First", "No paid APIs, runs on a laptop"),
+             ("paper", "Open Source", "11 public repositories on GitHub"),
+             ("eye", "OSINT Ops", "40+ platforms, 75+ username variants"),
+             ("clock", "News Hound", "7 source types, crawled and scored"),
+             ("star", "Music Maker", "16 CC BY tracks matched by BPM"),
+             ("redstone", "Kafka Wrangler", "Kafka-based real-time news pipeline"),
+             ("pickaxe", "Turbine Tuner", "Betz-limit turbine placement sim"),
+             ("book", "Da Vinci Mode", "Ask Leonardo's notebooks, offline"),
+             ("emerald", "Ensemble Master", "GNN + XGBoost + FinBERT ensemble"),
+             ("sword", "Forked", "1 fork on Multimodal Graph RAG"),
+             ("compass", "Docker Captain", "Docker Compose setups shipped"),
+             ("steve", "Web Presence", "foxynai.com is live"),
+             ("feather", "Full Stack", "FastAPI backends + React frontends")]
+    half = len(items) // 2
+    rows = [items[:half], items[half:]]
+    TW, TH, GAP = 288, 64, 12
+    PITCH = TW + GAP
+    W, H = 900, 16 + 2 * TH + GAP + 16
+    def toast(ic, t, d, x, y):
+        g = f'<rect x="{x}" y="{y}" width="{TW}" height="{TH}" fill="#212121"/>'
+        g += f'<rect x="{x}" y="{y}" width="{TW}" height="4" fill="#6a6a6a"/><rect x="{x}" y="{y+TH-4}" width="{TW}" height="4" fill="#0e0e0e"/>'
+        g += f'<rect x="{x}" y="{y}" width="4" height="{TH}" fill="#6a6a6a"/><rect x="{x+TW-4}" y="{y}" width="4" height="{TH}" fill="#0e0e0e"/>'
+        g += slot(x + 12, y + 12, 40) + spr(ic, x + 16, y + 16, 4)
+        g += f'<text x="{x+64}" y="{y+26}" font-size="13" font-weight="bold" fill="#ffff55" {MONO}>Advancement Made!</text>'
+        g += f'<text x="{x+64}" y="{y+42}" font-size="12" fill="#ffffff" {MONO}>{esc(t)}</text>'
+        g += f'<text x="{x+64}" y="{y+56}" font-size="10" fill="#aaaaaa" {MONO}>{esc(d)}</text>'
+        return g
+    b = ('<defs><linearGradient id="fade" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#000"/><stop offset=".06" stop-color="#fff"/>'
+         '<stop offset=".94" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>'
+         f'<mask id="m" maskUnits="userSpaceOnUse" x="0" y="0" width="{W}" height="{H}"><rect width="{W}" height="{H}" fill="url(#fade)"/></mask></defs>')
+    b += f'<rect width="{W}" height="{H}" fill="#151618"/><rect x="1" y="1" width="{W-2}" height="{H-2}" fill="none" stroke="#3a3b3f" stroke-width="2"/>'
+    b += '<g mask="url(#m)">'
+    style = ""
+    for r, row in enumerate(rows):
+        y = 16 + r * (TH + GAP)
+        span = len(row) * PITCH
+        g = "".join(toast(ic, t, d, i * PITCH, y) for i, (ic, t, d) in enumerate(row))
+        g += "".join(toast(ic, t, d, span + i * PITCH, y) for i, (ic, t, d) in enumerate(row))
+        b += f'<g class="a{r}">{g}</g>'
+        a, z = (0, -span) if r == 0 else (-span, 0)
+        dur = 90 if r == 0 else 100
+        style += f"@keyframes a{r}{{from{{transform:translateX({a}px)}}to{{transform:translateX({z}px)}}}}.a{r}{{animation:a{r} {dur}s linear infinite}}"
+    b += "</g>"
+    style += "@media (prefers-reduced-motion:reduce){.a0,.a1{animation:none}}"
+    save("advancements-marquee.svg", b, W, H, style)
 
 # ---- footer -----------------------------------------------------------
 def footer():
