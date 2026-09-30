@@ -412,39 +412,39 @@ def footer():
 # ---- FoxynAI feature card ----------------------------------------------------
 FOX = ["o.......o", "oo.....oo", "ooooooooo", "ooboooboo", "owwooowwo", "owwwwwwwo", ".owwwwwo.", "..owwwo..", "...ono..."]
 def foxynai():
+    """FoxynAI company card. The logo is the account's own avatar (scripts/foxynai-logo.png)."""
+    import base64
+    logo = base64.b64encode(open(os.path.join(os.path.dirname(__file__), "foxynai-logo.png"), "rb").read()).decode()
     W, H = 900, 248
     b = f'<rect width="{W}" height="{H}" fill="#100010"/>'
     b += f'<rect class="bd" x="4" y="4" width="{W-8}" height="{H-8}" fill="none" stroke="#3b0f80" stroke-width="4"/>'
-    # fox logo (blinks)
-    u, fx, fy = 12, 44, 44
-    b += slot(28, 28, 132)
-    b += sprite(FOX, dict(o="#e07b2a", w="#f4efe6", b="#1a1a1a", n="#1a1a1a"), fx, fy, u)
-    b += f'<g class="blink"><rect x="{fx+2*u}" y="{fy+3*u}" width="{u}" height="{u}" fill="#e07b2a"/><rect x="{fx+6*u}" y="{fy+3*u}" width="{u}" height="{u}" fill="#e07b2a"/></g>'
-    # name, tagline, services
-    b += pixels("FOXYNAI", 184, 36, 5, "#ffcc55", "#5a3a00", 3)
-    b += f'<text x="186" y="104" font-size="16" fill="#e0e0e0" {MONO}>Custom AI solutions &amp; intelligent</text>'
-    b += f'<text x="186" y="126" font-size="16" fill="#e0e0e0" {MONO}>automation for businesses.</text>'
-    x = 186
+    # logo badge (cream panel, pixel bevel)
+    lx, ly, lw, lh = 28, 28, 168, 192
+    b += f'<rect x="{lx-3}" y="{ly-3}" width="{lw+6}" height="{lh+6}" fill="#0e0e10"/><rect x="{lx}" y="{ly}" width="{lw}" height="{lh}" fill="#faf6ee"/>'
+    b += f'<image x="{lx+6}" y="{ly+6}" width="{lw-12}" height="{lh-12}" preserveAspectRatio="xMidYMid meet" href="data:image/png;base64,{logo}"/>'
+    b += f'<rect x="{lx}" y="{ly+lh-3}" width="{lw}" height="3" fill="#d8cfbd"/><rect x="{lx+lw-3}" y="{ly}" width="3" height="{lh}" fill="#d8cfbd"/>'
+    x0 = 224
+    b += pixels("FOXYNAI", x0, 36, 5, "#ffcc55", "#5a3a00", 3)
+    b += f'<text x="{x0+2}" y="104" font-size="16" fill="#e0e0e0" {MONO}>Custom AI solutions &amp; intelligent</text>'
+    b += f'<text x="{x0+2}" y="126" font-size="16" fill="#e0e0e0" {MONO}>automation for businesses.</text>'
+    x = x0 + 2
     for t in ("Custom AI solutions", "Intelligent automation", "For businesses"):
         w = len(t) * 7.6 + 22
-        b += f'<rect x="{x}" y="146" width="{w:.0f}" height="26" fill="#1a0a2a" stroke="#d9a441" stroke-width="2"/><text x="{x+11}" y="164" font-size="12" fill="#d9a441" {MONO}>{t}</text>'
+        b += f'<rect x="{x:.0f}" y="146" width="{w:.0f}" height="26" fill="#1a0a2a" stroke="#d9a441" stroke-width="2"/><text x="{x+11:.0f}" y="164" font-size="12" fill="#d9a441" {MONO}>{t}</text>'
         x += w + 8
-    # founder card
-    fx0 = 716
-    b += f'<rect x="{fx0}" y="28" width="156" height="92" fill="#1a1a1a" stroke="#4a4a4a" stroke-width="2"/><rect x="{fx0}" y="28" width="156" height="4" fill="#8a8a8a"/>'
+    fx0 = 724
+    b += f'<rect x="{fx0}" y="28" width="148" height="92" fill="#1a1a1a" stroke="#4a4a4a" stroke-width="2"/><rect x="{fx0}" y="28" width="148" height="4" fill="#8a8a8a"/>'
     b += slot(fx0 + 12, 44, 48) + spr("steve", fx0 + 16, 48, 5)
-    b += f'<text x="{fx0+72}" y="62" font-size="10" fill="#ffff55" {MONO}>FOUNDER</text>'
-    b += f'<text x="{fx0+72}" y="80" font-size="14" font-weight="bold" fill="#ffffff" {MONO}>Thanmai A</text>'
+    b += f'<text x="{fx0+70}" y="62" font-size="10" fill="#ffff55" {MONO}>FOUNDER</text>'
+    b += f'<text x="{fx0+70}" y="80" font-size="13" font-weight="bold" fill="#ffffff" {MONO}>Thanmai A</text>'
     b += f'<text x="{fx0+12}" y="108" font-size="10" fill="#aaaaaa" {MONO}>AI and ML engineer</text>'
-    # address bars
     for i, (txt, lab) in enumerate((("https://www.foxynai.com", "WEBSITE"), ("github.com/foxynaillp", "GITHUB"))):
-        y = 186 + i * 0
-        bx = 186 + i * 322
+        bx = x0 + i * 322
         b += f'<rect x="{bx}" y="188" width="306" height="30" fill="#0c0c0e" stroke="#4a4a4a" stroke-width="2"/><rect x="{bx}" y="188" width="72" height="30" fill="#26272a"/>'
-        b += pixels(lab, bx + 8, 198, 1, "#d9a441") if False else f'<text x="{bx+10}" y="207" font-size="10" fill="#d9a441" {MONO}>{lab}</text>'
+        b += f'<text x="{bx+10}" y="207" font-size="10" fill="#d9a441" {MONO}>{lab}</text>'
         b += f'<text x="{bx+82}" y="207" font-size="13" fill="#e0e0e0" {MONO}>{txt}</text>'
-    style = ".bd{animation:g 3s ease-in-out infinite}@keyframes g{50%{stroke:#7a3fd1}}.blink{animation:bl 5s linear infinite;opacity:0}@keyframes bl{0%,93%{opacity:0}94%,97%{opacity:1}98%,100%{opacity:0}}"
-    save("foxynai-panel.svg", b, W, H, style)
+    style = ".bd{animation:g 3s ease-in-out infinite}@keyframes g{50%{stroke:#7a3fd1}}"
+    save("foxynai-brand.svg", b, W, H, style)
 
 if __name__ == "__main__":
     header(); chat(); stack(); toasts(); foxynai(); footer(); pubs()
