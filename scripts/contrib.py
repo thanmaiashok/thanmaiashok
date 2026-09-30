@@ -1,4 +1,4 @@
-"""Fetches the contribution calendar and renders assets/contrib.svg as Minecraft blocks.
+"""Fetches the contribution calendar and renders assets/mc-contrib.svg as Minecraft blocks.
 Usage: GITHUB_TOKEN=... python3 scripts/contrib.py <username>   (no token: renders an empty grid)"""
 import json, os, sys, urllib.request
 sys.path.insert(0, os.path.dirname(__file__))
@@ -53,6 +53,6 @@ def render(total, weeks):
 
 if __name__ == "__main__":
     total, weeks = fetch()
-    out = os.path.join(os.path.dirname(__file__), "..", "assets", "contrib.svg")
+    out = os.path.join(os.path.dirname(__file__), "..", "assets", "mc-contrib.svg")
     open(out, "w").write(render(total, weeks))
     print("wrote", out, total)
