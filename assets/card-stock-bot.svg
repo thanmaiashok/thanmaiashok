@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="160" viewBox="0 0 480 160">
+<defs><linearGradient id="a" x1="0" x2="1"><stop offset="0" stop-color="#f0883e"/><stop offset="1" stop-color="#bc8cff"/></linearGradient>
+<style>.c{animation:in .9s ease-out both}@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.b{stroke-dasharray:480;stroke-dashoffset:480;animation:draw 1.6s .2s ease-out forwards}@keyframes draw{to{stroke-dashoffset:0}}
+.p{animation:pulse 2.4s ease-in-out infinite}@keyframes pulse{50%{opacity:.35}}</style></defs>
+<g class="c">
+<rect x="1" y="1" width="478" height="158" rx="12" fill="#0d1117" stroke="#30363d"/>
+<rect x="1" y="1" width="478" height="5" rx="2" fill="url(#a)" opacity=".9"/>
+<path class="b" d="M14 158 H466" stroke="url(#a)" stroke-width="2" fill="none"/>
+<text x="24" y="42" font-size="19" font-weight="700" fill="#f0883e" font-family="'Segoe UI',Helvetica,Arial,sans-serif">Stock Bot</text>
+<text x="24" y="78" font-size="13.5" fill="#8b949e" font-family="'Segoe UI',Helvetica,Arial,sans-serif">AI paper trading on 18k+ US and India stocks. GNN +</text><text x="24" y="98" font-size="13.5" fill="#8b949e" font-family="'Segoe UI',Helvetica,Arial,sans-serif">XGBoost + FinBERT, zero paid APIs, fully local.</text>
+<circle class="p" cx="30" cy="141" r="5" fill="#3572A5"/>
+<text x="42" y="146" font-size="12.5" fill="#c9d1d9" font-family="'Segoe UI',Helvetica,Arial,sans-serif">Python</text>
+<text x="456" y="146" font-size="12.5" fill="#8b949e" text-anchor="end" font-family="'Segoe UI',Helvetica,Arial,sans-serif">github.com/thanmaiashok/stock-bot</text>
+</g></svg>

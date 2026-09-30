@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="260" viewBox="0 0 1000 260">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="0.5" stop-color="#161b3d"/>
+      <stop offset="1" stop-color="#0d1117"/>
+    </linearGradient>
+    <linearGradient id="txt" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#58a6ff"/>
+      <stop offset="0.5" stop-color="#bc8cff"/>
+      <stop offset="1" stop-color="#3fb950"/>
+    </linearGradient>
+    <style>
+      .name{font:800 56px 'Segoe UI',Helvetica,Arial,sans-serif;fill:url(#txt);animation:rise 1.2s ease-out both}
+      .tag{font:500 22px 'Segoe UI',Helvetica,Arial,sans-serif;fill:#c9d1d9;animation:rise 1.2s .4s ease-out both}
+      .dot{animation:float 6s ease-in-out infinite}
+      .d2{animation-duration:8s;animation-delay:-2s}
+      .d3{animation-duration:10s;animation-delay:-5s}
+      @keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+      @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+    </style>
+  </defs>
+  <rect width="1000" height="260" fill="url(#bg)"/>
+  <g fill="#58a6ff" opacity="0.5">
+    <circle class="dot" cx="120" cy="60" r="4"/>
+    <circle class="dot d2" cx="300" cy="200" r="3"/>
+    <circle class="dot d3" cx="620" cy="50" r="5"/>
+    <circle class="dot" cx="820" cy="190" r="4"/>
+    <circle class="dot d2" cx="920" cy="70" r="3"/>
+    <circle class="dot d3" cx="450" cy="215" r="3"/>
+  </g>
+  <path fill="#58a6ff" fill-opacity="0.15" d="M0 200 Q250 150 500 200 T1000 200 V260 H0Z">
+    <animate attributeName="d" dur="7s" repeatCount="indefinite"
+      values="M0 200 Q250 150 500 200 T1000 200 V260 H0Z;M0 200 Q250 250 500 200 T1000 200 V260 H0Z;M0 200 Q250 150 500 200 T1000 200 V260 H0Z"/>
+  </path>
+  <path fill="#bc8cff" fill-opacity="0.15" d="M0 220 Q250 180 500 220 T1000 220 V260 H0Z">
+    <animate attributeName="d" dur="5s" repeatCount="indefinite"
+      values="M0 220 Q250 260 500 220 T1000 220 V260 H0Z;M0 220 Q250 180 500 220 T1000 220 V260 H0Z;M0 220 Q250 260 500 220 T1000 220 V260 H0Z"/>
+  </path>
+  <text class="name" x="500" y="120" text-anchor="middle">THANMAI A</text>
+  <text class="tag" x="500" y="165" text-anchor="middle">AI / ML Engineer · Researcher · Builder of working software</text>
+</svg>
