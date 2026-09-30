@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/header.svg" width="100%" alt="Thanmai A, AI/ML engineer at FoxynAI"/>
+<img src="assets/header-mc.svg" width="100%" alt="Thanmai A, AI/ML engineer at FoxynAI"/>
 
 <a href="https://github.com/foxynaillp"><img src="assets/btn-foxynai.svg" alt="FoxynAI" height="36"/></a>
 <a href="https://www.linkedin.com/in/thanmai-a-725b19278/"><img src="assets/btn-linkedin.svg" alt="LinkedIn" height="36"/></a>

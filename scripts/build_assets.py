@@ -127,7 +127,7 @@ def header():
 @keyframes d3{from{transform:translate(300px,18px)}to{transform:translate(1100px,18px)}}
 .cr{animation:hiss 3s ease-in-out infinite;transform-origin:892px 268px}
 @keyframes hiss{0%,70%,100%{transform:scale(1)}80%{transform:scale(1.07,.96)}90%{transform:scale(.98,1.04)}}"""
-    save("header.svg", b, W, H, style)
+    save("header-mc.svg", b, W, H, style)
 
 # ---- section banner (wood sign) --------------------------------------
 def banner(name, text, icon):
