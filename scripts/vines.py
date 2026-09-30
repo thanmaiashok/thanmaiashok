@@ -145,10 +145,8 @@ def add_light(path, per_cell=False):
 
 
 def apply_all(assets_dir, prefix):
-    """light vines on the project and paper cards only; everything else stays clean"""
+    """profile page: no vines anywhere, just make sure none are left in the generated files"""
     for f in sorted(os.listdir(assets_dir)):
-        if not (f.startswith(prefix) and f.endswith(".svg")): continue
-        n = f[len(prefix):]; p = os.path.join(assets_dir, f)
-        s = open(p, encoding="utf-8").read()
-        open(p, "w", encoding="utf-8").write(strip(s))
-        if n.startswith("card-") or n.startswith("pub-"): add_light(p)
+        if f.startswith(prefix) and f.endswith(".svg"):
+            p = os.path.join(assets_dir, f)
+            open(p, "w", encoding="utf-8").write(strip(open(p, encoding="utf-8").read()))
