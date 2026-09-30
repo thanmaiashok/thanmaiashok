@@ -7,17 +7,30 @@
 <a href="mailto:thanmaiashok@gmail.com"><img src="assets/v6-btn-email.svg" alt="Email" height="36"/></a>
 <a href="https://instagram.com/thanmai_ashok"><img src="assets/v6-btn-instagram.svg" alt="Instagram" height="36"/></a>
 
+<p align="center"><img src="assets/v6-gap.svg" width="1" height="18" alt=""/></p>
+
 <img src="assets/v6-banner-about.svg" width="100%" alt=""/>
+<img src="assets/v6-gap.svg" width="1" height="10" alt=""/>
 <img src="assets/v6-chat.svg" width="100%" alt="Server chat introducing Thanmai A"/>
 
+<p align="center"><img src="assets/v6-gap.svg" width="1" height="18" alt=""/></p>
+
 <img src="assets/v6-banner-adv.svg" width="100%" alt=""/>
+<img src="assets/v6-gap.svg" width="1" height="10" alt=""/>
 <img src="assets/v6-advancements-marquee.svg" width="100%" alt="Advancements: Published Author, Shipper, Founder, Healthcare AI, Model Miner, Green Thumb, Market Watcher, Graph Explorer, Automation, Bio Inspired, Quality Gate, Local First, Open Source, OSINT Ops, News Hound, Music Maker, Kafka Wrangler, Turbine Tuner, Da Vinci Mode, Ensemble Master, Forked, Docker Captain, Web Presence, Full Stack"/>
 
+<p align="center"><img src="assets/v6-gap.svg" width="1" height="18" alt=""/></p>
+
 <img src="assets/v6-banner-foxynai.svg" width="100%" alt="Founder of FoxynAI"/>
+<img src="assets/v6-gap.svg" width="1" height="10" alt=""/>
 <a href="https://www.foxynai.com/"><img src="assets/v6-foxynai-brand.svg" width="100%" alt="FoxynAI: custom AI solutions and intelligent automation for businesses. Founder: Thanmai A."/></a>
+
+<p align="center"><img src="assets/v6-gap.svg" width="1" height="4" alt=""/></p>
 
 <a href="https://www.foxynai.com/"><img src="assets/v6-btn-site.svg" alt="FoxynAI website" height="36"/></a>
 <a href="https://github.com/foxynaillp"><img src="assets/v6-btn-foxgh.svg" alt="FoxynAI on GitHub" height="36"/></a>
+
+<p align="center"><img src="assets/v6-gap.svg" width="1" height="18" alt=""/></p>
 
 <img src="assets/v6-banner-projects.svg" width="100%" alt=""/>
 <p align="center"><a href="https://github.com/thanmaiashok/multimodal-graph-rag--datamesh"><img src="assets/v6-card-multimodal-graph-rag--datamesh.svg" width="49%" alt="multimodal-graph-rag--datamesh"/></a>
@@ -37,15 +50,26 @@
 
 <p align="center"><a href="https://github.com/thanmaiashok/wine-quality-mlpipeline-DML"><img src="assets/v6-card-wine-quality-mlpipeline-DML.svg" width="49%" alt="wine-quality-mlpipeline-DML"/></a></p>
 
+<p align="center"><img src="assets/v6-gap.svg" width="1" height="18" alt=""/></p>
+
 <img src="assets/v6-banner-papers.svg" width="100%" alt=""/>
+<img src="assets/v6-gap.svg" width="1" height="10" alt=""/>
 <a href="https://scholar.google.com/scholar?q=Enhancing+Breast+Cancer+Prediction+in+HER+Health+with+XAI+Technology+and+ResNet101"><img src="assets/v6-paper-1.svg" width="100%" alt="Enhancing Breast Cancer Prediction in HER Health with XAI Technology and ResNet101. SR Sreeram, N Subash, N Nithya, Mohit Patil, A Thanmai. 2025 IEEE 17th International Conference on Computational Intelligence and Communication Networks (CICN), 2025/12/20, pages 1394-1400, IEEE."/></a>
 <a href="https://scholar.google.com/scholar?q=Performance+Analysis+of+Machine+Learning+Models+for+Liver+Cirrhosis+Staging+with+Hyperparameter+Tuning"><img src="assets/v6-paper-2.svg" width="100%" alt="Performance Analysis of Machine Learning Models for Liver Cirrhosis Staging with Hyperparameter Tuning. Gagan G Saralaya, N Subash, SV Raja, A Thanmai. 2025 5th International Conference on Emerging Research in Electronics, Computer Science and Technology (ICERECT), 2025/9/12, pages 1-4, IEEE."/></a>
 
+<p align="center"><img src="assets/v6-gap.svg" width="1" height="18" alt=""/></p>
+
 <img src="assets/v6-banner-tech.svg" width="100%" alt="Tech stack"/>
+<img src="assets/v6-gap.svg" width="1" height="10" alt=""/>
 <img src="assets/v6-stack-marquee.svg" width="100%" alt="Tech stack: Python, JavaScript, React, Vite, Tailwind CSS, Next.js, Node.js, FastAPI, Flask, Docker, PyTorch, TensorFlow, Keras, scikit-learn, OpenCV, Three.js, Neo4j, Kafka, PostgreSQL, Redis, SQLite, ClickHouse, Ollama, Hugging Face, FFmpeg, Jenkins, Git, Linux"/>
 
+<p align="center"><img src="assets/v6-gap.svg" width="1" height="18" alt=""/></p>
+
 <img src="assets/v6-banner-activity.svg" width="100%" alt=""/>
+<img src="assets/v6-gap.svg" width="1" height="10" alt=""/>
 <img src="assets/v6-contrib.svg" width="100%" alt="Contribution graph as Minecraft blocks"/>
+
+<p align="center"><img src="assets/v6-gap.svg" width="1" height="18" alt=""/></p>
 
 <img src="assets/v6-footer.svg" width="100%" alt=""/>
 
