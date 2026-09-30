@@ -53,6 +53,6 @@ def render(total, weeks):
 
 if __name__ == "__main__":
     total, weeks = fetch()
-    out = os.path.join(os.path.dirname(__file__), "..", "assets", "mc-contrib.svg")
+    out = os.path.join(os.path.dirname(__file__), "..", "assets", "v2-contrib.svg")
     open(out, "w").write(render(total, weeks))
     print("wrote", out, total)
