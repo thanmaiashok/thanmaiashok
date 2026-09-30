@@ -11,7 +11,7 @@
 <img src="assets/v6-chat.svg" width="100%" alt="Server chat introducing Thanmai A"/>
 
 <img src="assets/v6-banner-adv.svg" width="100%" alt=""/>
-<img src="assets/v6-toasts.svg" width="100%" alt="Advancements: published author, shipper, founder"/>
+<img src="assets/v6-advancements.svg" width="100%" alt="Advancements: Published Author, Shipper, Founder, Healthcare AI, Model Miner, Green Thumb, Market Watcher, Graph Explorer, Automation, Bio Inspired, Quality Gate, Local First"/>
 
 <img src="assets/v6-banner-founder.svg" width="100%" alt="Founder of Foxyn AI"/>
 <a href="https://www.foxynai.com/"><img src="assets/v6-foxynai.svg" width="100%" alt="Foxyn AI: custom AI solutions and intelligent automation for businesses. Founder: Thanmai A."/></a>

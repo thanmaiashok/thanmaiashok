@@ -335,20 +335,34 @@ def stack():
 
 # ---- advancement toasts ----------------------------------------------
 def toasts():
-    items = [("star", "Published Author", "2 IEEE papers in 2025"), ("sword", "Shipper", "11 projects built and released"), ("steve", "Founder", "Founder of FoxynAI")]
-    W, H = 900, 72
+    items = [("star", "Published Author", "2 IEEE papers in 2025"),
+             ("sword", "Shipper", "11 projects built and released"),
+             ("steve", "Founder", "Founder of FoxynAI"),
+             ("book", "Healthcare AI", "Breast cancer + liver cirrhosis ML"),
+             ("pickaxe", "Model Miner", "Quantize, prune, distill any model"),
+             ("sapling", "Green Thumb", "Plant disease AR, 97.3% accurate"),
+             ("emerald", "Market Watcher", "Paper trading on 18k+ stocks"),
+             ("compass", "Graph Explorer", "Graph RAG with Neo4j + vectors"),
+             ("redstone", "Automation", "Agent that edits 9:16 shorts"),
+             ("feather", "Bio Inspired", "Hawk, locust, dragonfly pursuit"),
+             ("potion", "Quality Gate", "Wine ML pipeline, 94% accuracy"),
+             ("eye", "Local First", "No paid APIs, runs on a laptop")]
+    COLS, RH = 3, 72
+    rows = (len(items) + COLS - 1) // COLS
+    W, H = 900, rows * RH
     b = ""
     for i, (ic, t, d) in enumerate(items):
-        x = 6 + i * 298
-        b += f'<g class="t" style="animation-delay:{i*0.4}s"><rect x="{x}" y="4" width="288" height="64" fill="#212121"/>'
-        b += f'<rect x="{x}" y="4" width="288" height="4" fill="#6a6a6a"/><rect x="{x}" y="64" width="288" height="4" fill="#0e0e0e"/>'
-        b += f'<rect x="{x}" y="4" width="4" height="64" fill="#6a6a6a"/><rect x="{x+284}" y="4" width="4" height="64" fill="#0e0e0e"/>'
-        b += slot(x + 12, 16, 40) + spr(ic, x + 16, 20, 4)
-        b += f'<text x="{x+64}" y="30" font-size="13" font-weight="bold" fill="#ffff55" {MONO}>Advancement Made!</text>'
-        b += f'<text x="{x+64}" y="46" font-size="12" fill="#ffffff" {MONO}>{esc(t)}</text>'
-        b += f'<text x="{x+64}" y="60" font-size="10" fill="#aaaaaa" {MONO}>{esc(d)}</text></g>'
+        r, c = divmod(i, COLS)
+        x, y = 6 + c * 298, 4 + r * RH
+        b += f'<g class="t" style="animation-delay:{i*0.15:.2f}s"><rect x="{x}" y="{y}" width="288" height="64" fill="#212121"/>'
+        b += f'<rect x="{x}" y="{y}" width="288" height="4" fill="#6a6a6a"/><rect x="{x}" y="{y+60}" width="288" height="4" fill="#0e0e0e"/>'
+        b += f'<rect x="{x}" y="{y}" width="4" height="64" fill="#6a6a6a"/><rect x="{x+284}" y="{y}" width="4" height="64" fill="#0e0e0e"/>'
+        b += slot(x + 12, y + 12, 40) + spr(ic, x + 16, y + 16, 4)
+        b += f'<text x="{x+64}" y="{y+26}" font-size="13" font-weight="bold" fill="#ffff55" {MONO}>Advancement Made!</text>'
+        b += f'<text x="{x+64}" y="{y+42}" font-size="12" fill="#ffffff" {MONO}>{esc(t)}</text>'
+        b += f'<text x="{x+64}" y="{y+56}" font-size="10" fill="#aaaaaa" {MONO}>{esc(d)}</text></g>'
     style = ".t{animation:sl .6s backwards}@keyframes sl{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:none}}"
-    save("toasts.svg", b, W, H, style)
+    save("advancements.svg", b, W, H, style)
 
 # ---- footer -----------------------------------------------------------
 def footer():
