@@ -61,7 +61,7 @@ def inject(path, kind="card", **kw):
     s = re.sub(r'<g[^>]*id="vines">.*?</g>', '', s, flags=re.S)
     m = re.search(r'<svg[^>]*\bwidth="(\d+(?:\.\d+)?)"[^>]*\bheight="(\d+(?:\.\d+)?)"', s)
     W, H = int(float(m.group(1))), int(float(m.group(2)))
-    seed = os.path.basename(path)
+    seed = os.path.basename(os.path.dirname(os.path.dirname(path))) + "/" + os.path.basename(path)
     if os.path.basename(path) == "features.svg":
         cells = re.findall(r'<g class="f"[^>]*><rect x="(\d+)" y="(\d+)" width="(\d+)" height="(\d+)" fill="#1d1e21"', s)
         parts = s.split("</g>")
@@ -78,19 +78,77 @@ def inject(path, kind="card", **kw):
     open(path, "w", encoding="utf-8").write(s)
     return True
 
+def run_repo(d):
+    n = 0
+    files = []
+    if os.path.exists(f"{d}/docs/flow.svg"): files.append((f"{d}/docs/flow.svg", "card", {}))
+    md = f"{d}/docs/mc"
+    for f in sorted(os.listdir(md)):
+        if not f.endswith(".svg") or f.startswith("link-") or f.startswith("FONT"): continue
+        p = f"{md}/{f}"
+        if f.startswith("h2-") or f.startswith("h3-"): files.append((p, "banner", {"edge_only": True}))
+        elif f.startswith("c-") or f.startswith("t-"): files.append((p, "card", {"edge_only": True, "right_top": False}))
+        else: files.append((p, "card", {}))
+    for p, k, kw in files:
+        n += inject(p, k, **kw)
+    return n
+if __name__ == "__main__":
+    for r in sys.argv[1:]: print(r, run_repo(f"/home/user/{r}"))
 
-def toasts(path):
-    s = open(path, encoding="utf-8").read()
-    s = re.sub(r'<g[^>]*id="vines">.*?</g>', '', s, flags=re.S)
-    add = "".join(f'<g transform="translate({6+i*298} 4)" id="vines">' + vines(288, 64, f"toast{i}", edge_only=True, right_top=False) + "</g>" for i in range(3))
-    open(path, "w", encoding="utf-8").write(s.replace("</svg>", add + "</svg>"))
+# ---- light, tasteful version: a couple of short strands at the top corners only ----
+COL2 = {"D": "#2b4526", "M": "#3f6434", "L": "#55803f"}
+def light(W, H, seed):
+    rnd = random.Random(zlib.crc32(("light" + str(seed)).encode()))
+    cells = {}
+    cap = max(2, min(6, int(H * 0.28 / U)))
+    for side in (0, 1):
+        for i in range(rnd.randint(1, 2)):
+            n = rnd.randint(2, cap)
+            if side == 0:
+                x = rnd.choice([0, U, 2 * U, 4 * U, 7 * U]) if i == 0 else rnd.choice([3 * U, 5 * U, 9 * U])
+            else:
+                x = W - U - (rnd.choice([0, U, 3 * U, 5 * U]) if i == 0 else rnd.choice([2 * U, 6 * U, 9 * U]))
+            cx = x
+            for k in range(n):
+                cells[(cx, k * U)] = "D" if k == n - 1 else ("L" if k % 3 == 1 else "M")
+                if 0 < k < n - 1 and rnd.random() < 0.35:
+                    cells[(cx + (U if side == 0 else -U), k * U)] = rnd.choice(["D", "M"])
+    if rnd.random() < 0.6:                      # a tiny patch of moss in one bottom corner
+        x0 = rnd.choice([0, W - 3 * U])
+        for dx in range(3):
+            for k in range(rnd.randint(1, 2 if dx != 1 else 3)):
+                cells[(x0 + dx * U, H - U - k * U)] = rnd.choice(["D", "M"]) if k else "D"
+    return "".join(f'<rect x="{x}" y="{y}" width="{U}" height="{U}" fill="{COL2[c]}"/>'
+                   for (x, y), c in sorted(cells.items(), key=lambda kv: (kv[0][1], kv[0][0])) if -U < x < W and -U < y < H)
+
+def strip(s):
+    return re.sub(r'<g[^>]*id="vines">.*?</g>', '', s, flags=re.S)
+
+def add_light(path, per_cell=False):
+    s = strip(open(path, encoding="utf-8").read())
+    m = re.search(r'<svg[^>]*\bwidth="(\d+(?:\.\d+)?)"[^>]*\bheight="(\d+(?:\.\d+)?)"', s)
+    W, H = int(float(m.group(1))), int(float(m.group(2)))
+    seed = os.path.basename(path)
+    if per_cell:
+        cells = re.findall(r'<g class="f"[^>]*><rect x="(\d+)" y="(\d+)" width="(\d+)" height="(\d+)" fill="#1d1e21"', s)
+        parts = s.split("</g>"); out = []; ci = 0
+        for p in parts[:-1]:
+            if ci < len(cells) and '<g class="f"' in p:
+                x, y, w, h = map(int, cells[ci]); ci += 1
+                if zlib.crc32(f"{seed}{ci}".encode()) % 3 != 0:      # about two in three cards get vines
+                    p += f'<g transform="translate({x} {y})" id="vines">' + light(w, h, seed + str(ci)) + "</g>"
+            out.append(p)
+        s = "</g>".join(out + [parts[-1]])
+    else:
+        s = s.replace("</svg>", f'<g id="vines">{light(W, H, seed)}</g></svg>')
+    open(path, "w", encoding="utf-8").write(s)
+
 
 def apply_all(assets_dir, prefix):
+    """light vines on the project and paper cards only; everything else stays clean"""
     for f in sorted(os.listdir(assets_dir)):
-        if not f.startswith(prefix) or not f.endswith(".svg"): continue
-        n = f[len(prefix):]
-        p = os.path.join(assets_dir, f)
-        if n.startswith("card-") or n.startswith("pub-") or n in ("chat.svg", "contrib.svg"):
-            inject(p, "card", edge_only=True, right_top=False)
-        elif n == "toasts.svg": toasts(p)
-        elif n.startswith("banner-"): inject(p, "banner", edge_only=True)
+        if not (f.startswith(prefix) and f.endswith(".svg")): continue
+        n = f[len(prefix):]; p = os.path.join(assets_dir, f)
+        s = open(p, encoding="utf-8").read()
+        open(p, "w", encoding="utf-8").write(strip(s))
+        if n.startswith("card-") or n.startswith("pub-"): add_light(p)
