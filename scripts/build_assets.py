@@ -412,7 +412,7 @@ def footer():
 # ---- FoxynAI feature card ----------------------------------------------------
 FOX = ["o.......o", "oo.....oo", "ooooooooo", "ooboooboo", "owwooowwo", "owwwwwwwo", ".owwwwwo.", "..owwwo..", "...ono..."]
 def foxynai():
-    W, H = 900, 312
+    W, H = 900, 248
     b = f'<rect width="{W}" height="{H}" fill="#100010"/>'
     b += f'<rect class="bd" x="4" y="4" width="{W-8}" height="{H-8}" fill="none" stroke="#3b0f80" stroke-width="4"/>'
     # fox logo (blinks)
@@ -443,36 +443,8 @@ def foxynai():
         b += f'<rect x="{bx}" y="188" width="306" height="30" fill="#0c0c0e" stroke="#4a4a4a" stroke-width="2"/><rect x="{bx}" y="188" width="72" height="30" fill="#26272a"/>'
         b += pixels(lab, bx + 8, 198, 1, "#d9a441") if False else f'<text x="{bx+10}" y="207" font-size="10" fill="#d9a441" {MONO}>{lab}</text>'
         b += f'<text x="{bx+82}" y="207" font-size="13" fill="#e0e0e0" {MONO}>{txt}</text>'
-    # idea -> AI -> working software pipeline with a moving marker
-    labels = ["IDEA", "AI", "WORKING SOFTWARE"]
-    bw = [120, 120, 200]; gx = 34
-    xs = []; cx = 44
-    for w in bw: xs.append(cx); cx += w + gx
-    y0, bh = 240, 44
-    CYC = 6.0
     style = ".bd{animation:g 3s ease-in-out infinite}@keyframes g{50%{stroke:#7a3fd1}}.blink{animation:bl 5s linear infinite;opacity:0}@keyframes bl{0%,93%{opacity:0}94%,97%{opacity:1}98%,100%{opacity:0}}"
-    for i, (lab, x0, w) in enumerate(zip(labels, xs, bw)):
-        b += f'<rect x="{x0}" y="{y0}" width="{w}" height="{bh}" fill="#6a6a6a"/><rect x="{x0}" y="{y0}" width="{w}" height="4" fill="#8a8a8a"/><rect x="{x0}" y="{y0}" width="4" height="{bh}" fill="#8a8a8a"/>'
-        b += f'<rect x="{x0}" y="{y0+bh-4}" width="{w}" height="4" fill="#4a4a4a"/><rect x="{x0+w-4}" y="{y0}" width="4" height="{bh}" fill="#4a4a4a"/>'
-        b += pixels(lab, x0 + (w - width(lab, 2)) // 2, y0 + 15, 2, "#f0f0f0", "#111111", 1)
-        b += f'<g class="h{i}" opacity="0"><rect x="{x0-3}" y="{y0-3}" width="{w+6}" height="{bh+6}" fill="none" stroke="#ffcc55" stroke-width="3"/></g>'
-        s0 = (0.3 + i * 1.6) / CYC * 100; s1 = s0 + 1.6 / CYC * 100
-        style += f"@keyframes h{i}{{0%,{s0:.1f}%{{opacity:0}}{s0+1:.1f}%,{s1:.1f}%{{opacity:1}}{s1+1.5:.1f}%,100%{{opacity:0}}}}.h{i}{{animation:h{i} {CYC}s linear infinite}}"
-        if i < 2:
-            ax = x0 + w + 6
-            b += f'<path fill="#d9a441" d="M{ax} {y0+bh//2-4}h14v-6l10 10-10 10v-6h-14z"/>'
-    # marker travelling along the blocks
-    ys = y0 + bh + 10
-    start = xs[0] + bw[0] // 2; end = xs[2] + bw[2] // 2
-    kf = f"0%,{0.3/CYC*100:.1f}%{{transform:translateX(0);opacity:0}}{0.5/CYC*100:.1f}%{{opacity:1;transform:translateX(0)}}"
-    for i in (1, 2):
-        c = xs[i] + bw[i] // 2 - start
-        kf += f"{(0.3+i*1.6)/CYC*100:.1f}%{{transform:translateX({c}px)}}"
-    kf += f"{(0.3+3*1.6)/CYC*100:.1f}%{{opacity:1;transform:translateX({end-start}px)}}{(0.3+3*1.6)/CYC*100+2:.1f}%,100%{{opacity:0;transform:translateX({end-start}px)}}"
-    style += f"@keyframes mk{{{kf}}}.mk{{animation:mk {CYC}s linear infinite}}"
-    b += f'<g class="mk" opacity="0"><rect x="{start-8}" y="{ys}" width="16" height="10" fill="#ffcc55"/><rect x="{start-8}" y="{ys}" width="16" height="3" fill="#fff0c0"/></g>'
-    b += f'<text x="{xs[2]+bw[2]+30}" y="{y0+18}" font-size="13" fill="#cfcfcf" {MONO}>Turning ideas into</text><text x="{xs[2]+bw[2]+30}" y="{y0+36}" font-size="13" fill="#cfcfcf" {MONO}>working software.</text>'
-    save("foxynai-hero.svg", b, W, H, style)
+    save("foxynai-panel.svg", b, W, H, style)
 
 if __name__ == "__main__":
     header(); chat(); stack(); toasts(); foxynai(); footer(); pubs()
