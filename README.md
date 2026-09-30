@@ -61,8 +61,17 @@
 ## 📊 GitHub stats
 
 <p align="center">
-  <img height="170" src="https://github-readme-stats.vercel.app/api?username=thanmaiashok&show_icons=true&theme=tokyonight&hide_border=true"/>
+  <img height="170" src="https://github-readme-stats.vercel.app/api?username=thanmaiashok&show_icons=true&theme=tokyonight&hide_border=true&count_private=true"/>
   <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=thanmaiashok&layout=compact&theme=tokyonight&hide_border=true"/>
+</p>
+<p align="center">
+  <img src="https://streak-stats.demolab.com/?user=thanmaiashok&theme=tokyonight&hide_border=true" height="170"/>
+</p>
+
+## 🏆 Trophies
+
+<p align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=thanmaiashok&theme=tokyonight&no-frame=true&no-bg=true&column=7&margin-w=10"/>
 </p>
 
 ## 🐍 Contribution snake
@@ -77,5 +86,7 @@
 <img src="assets/divider.svg" width="100%" alt=""/>
 
 *Open to collaborating on AI, research and product ideas.* &nbsp; 📫 [thanmaiashok@gmail.com](mailto:thanmaiashok@gmail.com)
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=120&section=footer" width="100%" alt=""/>
 
 </div>
