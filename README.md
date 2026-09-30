@@ -14,14 +14,22 @@
 <img src="assets/v6-toasts.svg" width="100%" alt="Advancements: published author, shipper, founder"/>
 
 <img src="assets/v6-banner-projects.svg" width="100%" alt=""/>
-<table>
-<tr><td width="50%"><a href="https://github.com/thanmaiashok/multimodal-graph-rag--datamesh"><img src="assets/v6-card-multimodal-graph-rag--datamesh.svg" width="100%" alt="multimodal-graph-rag--datamesh"/></a></td><td width="50%"><a href="https://github.com/thanmaiashok/universal-optimizer"><img src="assets/v6-card-universal-optimizer.svg" width="100%" alt="universal-optimizer"/></a></td></tr>
-<tr><td width="50%"><a href="https://github.com/thanmaiashok/AR-Plant-Health-Checker"><img src="assets/v6-card-AR-Plant-Health-Checker.svg" width="100%" alt="AR-Plant-Health-Checker"/></a></td><td width="50%"><a href="https://github.com/thanmaiashok/stock-bot"><img src="assets/v6-card-stock-bot.svg" width="100%" alt="stock-bot"/></a></td></tr>
-<tr><td width="50%"><a href="https://github.com/thanmaiashok/news-intelligence"><img src="assets/v6-card-news-intelligence.svg" width="100%" alt="news-intelligence"/></a></td><td width="50%"><a href="https://github.com/thanmaiashok/reelforge"><img src="assets/v6-card-reelforge.svg" width="100%" alt="reelforge"/></a></td></tr>
-<tr><td width="50%"><a href="https://github.com/thanmaiashok/NeuroReflex-X"><img src="assets/v6-card-NeuroReflex-X.svg" width="100%" alt="NeuroReflex-X"/></a></td><td width="50%"><a href="https://github.com/thanmaiashok/vinci-ai"><img src="assets/v6-card-vinci-ai.svg" width="100%" alt="vinci-ai"/></a></td></tr>
-<tr><td width="50%"><a href="https://github.com/thanmaiashok/social-profile-intelligence"><img src="assets/v6-card-social-profile-intelligence.svg" width="100%" alt="social-profile-intelligence"/></a></td><td width="50%"><a href="https://github.com/thanmaiashok/micro-wind-analyzer"><img src="assets/v6-card-micro-wind-analyzer.svg" width="100%" alt="micro-wind-analyzer"/></a></td></tr>
-<tr><td width="50%"><a href="https://github.com/thanmaiashok/wine-quality-mlpipeline-DML"><img src="assets/v6-card-wine-quality-mlpipeline-DML.svg" width="100%" alt="wine-quality-mlpipeline-DML"/></a></td><td></td></tr>
-</table>
+<p align="center"><a href="https://github.com/thanmaiashok/multimodal-graph-rag--datamesh"><img src="assets/v6-card-multimodal-graph-rag--datamesh.svg" width="49%" alt="multimodal-graph-rag--datamesh"/></a>
+<a href="https://github.com/thanmaiashok/universal-optimizer"><img src="assets/v6-card-universal-optimizer.svg" width="49%" alt="universal-optimizer"/></a></p>
+
+<p align="center"><a href="https://github.com/thanmaiashok/AR-Plant-Health-Checker"><img src="assets/v6-card-AR-Plant-Health-Checker.svg" width="49%" alt="AR-Plant-Health-Checker"/></a>
+<a href="https://github.com/thanmaiashok/stock-bot"><img src="assets/v6-card-stock-bot.svg" width="49%" alt="stock-bot"/></a></p>
+
+<p align="center"><a href="https://github.com/thanmaiashok/news-intelligence"><img src="assets/v6-card-news-intelligence.svg" width="49%" alt="news-intelligence"/></a>
+<a href="https://github.com/thanmaiashok/reelforge"><img src="assets/v6-card-reelforge.svg" width="49%" alt="reelforge"/></a></p>
+
+<p align="center"><a href="https://github.com/thanmaiashok/NeuroReflex-X"><img src="assets/v6-card-NeuroReflex-X.svg" width="49%" alt="NeuroReflex-X"/></a>
+<a href="https://github.com/thanmaiashok/vinci-ai"><img src="assets/v6-card-vinci-ai.svg" width="49%" alt="vinci-ai"/></a></p>
+
+<p align="center"><a href="https://github.com/thanmaiashok/social-profile-intelligence"><img src="assets/v6-card-social-profile-intelligence.svg" width="49%" alt="social-profile-intelligence"/></a>
+<a href="https://github.com/thanmaiashok/micro-wind-analyzer"><img src="assets/v6-card-micro-wind-analyzer.svg" width="49%" alt="micro-wind-analyzer"/></a></p>
+
+<p align="center"><a href="https://github.com/thanmaiashok/wine-quality-mlpipeline-DML"><img src="assets/v6-card-wine-quality-mlpipeline-DML.svg" width="49%" alt="wine-quality-mlpipeline-DML"/></a></p>
 
 <img src="assets/v6-banner-papers.svg" width="100%" alt=""/>
 <a href="https://scholar.google.com/scholar?q=Enhancing+Breast+Cancer+Prediction+in+HER+Health+with+XAI+Technology+and+ResNet101"><img src="assets/v6-pub-1.svg" width="100%" alt="Enhancing Breast Cancer Prediction in HER Health with XAI Technology and ResNet101"/></a>
