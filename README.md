@@ -35,8 +35,8 @@
 <a href="https://scholar.google.com/scholar?q=Enhancing+Breast+Cancer+Prediction+in+HER+Health+with+XAI+Technology+and+ResNet101"><img src="assets/v6-pub-1.svg" width="100%" alt="Enhancing Breast Cancer Prediction in HER Health with XAI Technology and ResNet101"/></a>
 <a href="https://scholar.google.com/scholar?q=Performance+Analysis+of+Machine+Learning+Models+for+Liver+Cirrhosis+Staging+with+Hyperparameter+Tuning"><img src="assets/v6-pub-2.svg" width="100%" alt="Performance Analysis of Machine Learning Models for Liver Cirrhosis Staging with Hyperparameter Tuning"/></a>
 
-<img src="assets/v6-banner-stack.svg" width="100%" alt=""/>
-<img src="assets/v6-hotbar.svg" width="100%" alt="Python, JavaScript, React, Node, FastAPI, Docker, PyTorch, OpenCV, Three.js"/>
+<img src="assets/v6-banner-tech.svg" width="100%" alt="Tech stack"/>
+<img src="assets/v6-stack.svg" width="100%" alt="Tech stack: Python, JavaScript, React, Vite, Tailwind CSS, Next.js, Node.js, FastAPI, Flask, Docker, PyTorch, TensorFlow, Keras, scikit-learn, OpenCV, Three.js, Neo4j, Kafka, PostgreSQL, Redis, SQLite, ClickHouse, Ollama, Hugging Face, FFmpeg, Jenkins, Git, Linux"/>
 
 <img src="assets/v6-banner-activity.svg" width="100%" alt=""/>
 <img src="assets/v6-contrib.svg" width="100%" alt="Contribution graph as Minecraft blocks"/>

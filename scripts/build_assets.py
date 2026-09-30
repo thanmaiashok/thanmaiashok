@@ -264,29 +264,28 @@ def pubs():
         style = ".bd{animation:g 3s ease-in-out infinite}@keyframes g{50%{stroke:#7a3fd1}}.glint{animation:gl 3s ease-in-out infinite}@keyframes gl{0%{transform:translateX(-20px);opacity:0}40%{opacity:.5}80%,100%{transform:translateX(70px);opacity:0}}"
         save(f"pub-{i+1}.svg", b, W, H, style)
 
-# ---- hotbar ------------------------------------------------------------
-def cube(x, y, s, col):
-    def sh(c, f):
-        c = c.lstrip("#"); r, g, b_ = (int(c[k:k+2], 16) for k in (0, 2, 4))
-        return "#%02x%02x%02x" % tuple(min(255, int(v * f)) for v in (r, g, b_))
-    h = s // 2
-    return (f'<path d="M{x+s} {y} l{s} {h} l-{s} {h} l-{s} -{h}z" fill="{sh(col,1.25)}"/>'
-            f'<path d="M{x} {y+h} l{s} {h} v{s} l-{s} -{h}z" fill="{col}"/>'
-            f'<path d="M{x+2*s} {y+h} l-{s} {h} v{s} l{s} -{h}z" fill="{sh(col,.7)}"/>')
-def hotbar():
-    tools = [("PYTHON", "#3572A5"), ("JS", "#d4b800"), ("REACT", "#2aa5c2"), ("NODE", "#4c9a3a"), ("API", "#0e8f7e"),
-             ("DOCKER", "#2a7fd6"), ("TORCH", "#d5502b"), ("OPENCV", "#c93a3a"), ("THREE", "#8a8a8a")]
-    S, G = 86, 6
-    W = len(tools) * (S + G) + G
-    H = S + 46
-    b = f'<rect width="{W}" height="{H}" fill="#000" opacity=".0"/>'
-    for i, (n, c) in enumerate(tools):
-        x = G + i * (S + G)
-        b += f'<g class="s" style="animation-delay:{i*0.12}s">' + slot(x, 4, S)
-        b += cube(x + S // 2 - 16, 18, 16, c)
-        b += pixels(n, x + (S - width(n, 2)) // 2, 4 + S - 20, 2, "#ffffff", "#3a3a3a", 1) + "</g>"
+# ---- tech stack: real logos (Simple Icons, CC0) in inventory slots ------
+def stack():
+    import json
+    icons = json.load(open(os.path.join(os.path.dirname(__file__), "icons.json")))
+    COLS, TW, TH, GX, GY = 7, 116, 118, 12, 12
+    rows = (len(icons) + COLS - 1) // COLS
+    W = COLS * TW + (COLS - 1) * GX
+    H = rows * TH + (rows - 1) * GY + 8
+    b = ""
+    for i, ic in enumerate(icons):
+        r, c = divmod(i, COLS)
+        x, y = c * (TW + GX), 4 + r * (TH + GY)
+        hx = ic["hex"]
+        lum = 0.3 * int(hx[0:2], 16) + 0.59 * int(hx[2:4], 16) + 0.11 * int(hx[4:6], 16)
+        col = "#e8e8e8" if lum < 45 else "#" + hx
+        g = f'<g class="s" style="animation-delay:{i*0.05:.2f}s">' + slot(x, y, TW - 0)
+        g = g.replace('fill="#8b8b8b"', 'fill="#2a2b2e"').replace('fill="#373737"', 'fill="#0e0e10"').replace('fill="#ffffff"', 'fill="#5a5b60"')
+        g += f'<g transform="translate({x + TW/2 - 28:.1f} {y + 14}) scale(2.333)"><path fill="{col}" d="{ic["d"]}"/></g>'
+        g += f'<text x="{x + TW/2}" y="{y + TH - 16}" font-size="12" text-anchor="middle" fill="#cfcfcf" {MONO}>{esc(ic["name"])}</text>'
+        b += g + "</g>"
     style = ".s{animation:pop .4s backwards}@keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}"
-    save("hotbar.svg", b, W, S + 12, style)
+    save("stack.svg", b, W, H, style)
 
 # ---- advancement toasts ----------------------------------------------
 def toasts():
@@ -322,9 +321,9 @@ def footer():
     save("footer.svg", b, W, H)
 
 if __name__ == "__main__":
-    header(); chat(); hotbar(); toasts(); footer(); pubs()
+    header(); chat(); stack(); toasts(); footer(); pubs()
     for n, t, i in [("banner-projects.svg", "INVENTORY: PROJECTS", "pickaxe"), ("banner-papers.svg", "ENCHANTED BOOKS: PAPERS", "book"),
-                    ("banner-stack.svg", "HOTBAR: TOOLS", "sword"), ("banner-activity.svg", "ACTIVITY: CONTRIBUTIONS", "emerald"),
+                    ("banner-tech.svg", "TECH STACK", "sword"), ("banner-activity.svg", "ACTIVITY: CONTRIBUTIONS", "emerald"),
                     ("banner-about.svg", "SERVER CHAT", "paper"), ("banner-adv.svg", "ADVANCEMENTS", "star")]:
         banner(n, t, i)
     for n, t in [("btn-foxynai.svg", "FOXYNAI"), ("btn-linkedin.svg", "LINKEDIN"), ("btn-email.svg", "EMAIL"), ("btn-instagram.svg", "INSTAGRAM")]:
