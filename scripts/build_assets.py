@@ -118,8 +118,8 @@ def header():
     b += "</g>"
     # title
     b += pixels("THANMAI A", 50, 58, 9, "#ffffff", "#3a3a3a", 5)
-    b += pixels("AI / ML ENGINEER", 52, 148, 4, "#ffd23a", "#4a3a00", 3)
-    b += pixels("@ FOXYNAI", 52, 190, 4, "#55ffff", "#0a3a3a", 3)
+    b += pixels("AI & ML ENGINEER", 52, 148, 4, "#ffd23a", "#4a3a00", 3)
+    b += pixels("FOUNDER OF FOXYNAI", 52, 190, 4, "#55ffff", "#0a3a3a", 3)
     style = """.sun{animation:bob 6s ease-in-out infinite}@keyframes bob{50%{transform:translateY(8px)}}
 .cl1{animation:d1 60s linear infinite}.cl2{animation:d2 80s linear infinite}.cl3{animation:d3 100s linear infinite}
 @keyframes d1{from{transform:translate(60px,30px)}to{transform:translate(1060px,30px)}}
@@ -157,17 +157,23 @@ def button(name, text):
 # ---- chat window -----------------------------------------------------
 def chat():
     lines = [("[Server] Thanmai A joined the game", "#ffff55"),
-             ("<Thanmai> hey. I'm an AI/ML engineer at FoxynAI.", "#ffffff"),
+             ("<Thanmai> hey. I'm an AI and ML engineer.", "#ffffff"),
+             ("<Thanmai> founder of FoxynAI.", "#ffffff"),
              ("<Thanmai> I build RAG systems, compress models and ship computer vision apps.", "#ffffff"),
              ("<Thanmai> 2 IEEE papers in 2025, both ML for healthcare.", "#ffffff"),
              ("<Thanmai> 11 projects shipped. Most run locally, no paid APIs.", "#ffffff"),
-             ("[Server] Thanmai A has made the advancement [Builder]", "#55ff55")]
+             ("[Server] Thanmai A has made the advancement [Founder]", "#55ff55")]
+    CYC, STEP = 18, 1.9
     W, H = 900, 34 + len(lines) * 30
     b = f'<rect width="{W}" height="{H}" fill="#1b1b1b"/><rect width="{W}" height="{H}" fill="#000" opacity=".25"/>'
     b += f'<rect width="{W}" height="4" fill="#3a3a3a"/><rect y="{H-4}" width="{W}" height="4" fill="#3a3a3a"/>'
-    style = ".l{animation:show .2s backwards}@keyframes show{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}"
+    style = ""
     for i, (t, c) in enumerate(lines):
-        b += (f'<g class="l" style="animation-delay:{0.4+i*1.1}s"><rect x="14" y="{20+i*30}" width="{W-28}" height="26" fill="#000" opacity=".35"/>'
+        s0 = (0.6 + i * STEP) / CYC * 100
+        s1 = s0 + 1.2
+        style += (f"@keyframes c{i}{{0%,{s0:.2f}%{{opacity:0;transform:translateX(-10px)}}{s1:.2f}%,92%{{opacity:1;transform:none}}97%,100%{{opacity:0;transform:none}}}}"
+                  f".c{i}{{animation:c{i} {CYC}s linear infinite}}")
+        b += (f'<g class="c{i}" opacity="0"><rect x="14" y="{20+i*30}" width="{W-28}" height="26" fill="#000" opacity=".35"/>'
               f'<text x="24" y="{39+i*30}" font-size="15" fill="{c}" {MONO}>{esc(t)}</text></g>')
     save("chat.svg", b, W, H, style)
 
@@ -252,7 +258,7 @@ def hotbar():
 
 # ---- advancement toasts ----------------------------------------------
 def toasts():
-    items = [("star", "Published Author", "2 IEEE papers in 2025"), ("sword", "Shipper", "11 projects built and released"), ("steve", "Builder", "AI / ML at FoxynAI")]
+    items = [("star", "Published Author", "2 IEEE papers in 2025"), ("sword", "Shipper", "11 projects built and released"), ("steve", "Founder", "Founder of FoxynAI")]
     W, H = 900, 72
     b = ""
     for i, (ic, t, d) in enumerate(items):

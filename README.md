@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/mc-header.svg" width="100%" alt="Thanmai A, AI/ML engineer at FoxynAI"/>
+<img src="assets/mc-header.svg" width="100%" alt="Thanmai A, AI and ML engineer, founder of FoxynAI"/>
 
 <a href="https://github.com/foxynaillp"><img src="assets/mc-btn-foxynai.svg" alt="FoxynAI" height="36"/></a>
 <a href="https://www.linkedin.com/in/thanmai-a-725b19278/"><img src="assets/mc-btn-linkedin.svg" alt="LinkedIn" height="36"/></a>
@@ -11,7 +11,7 @@
 <img src="assets/mc-chat.svg" width="100%" alt="Server chat introducing Thanmai A"/>
 
 <img src="assets/mc-banner-adv.svg" width="100%" alt=""/>
-<img src="assets/mc-toasts.svg" width="100%" alt="Advancements: published author, shipper, builder"/>
+<img src="assets/mc-toasts.svg" width="100%" alt="Advancements: published author, shipper, founder"/>
 
 <img src="assets/mc-banner-projects.svg" width="100%" alt=""/>
 <table>
