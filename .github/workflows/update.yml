@@ -24,6 +24,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/v2-contrib.svg
+          git add assets/v3-contrib.svg
           git diff --cached --quiet || git commit -m "Update contribution blocks"
           git push

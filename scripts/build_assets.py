@@ -9,7 +9,7 @@ MONO = "font-family=\"'DejaVu Sans Mono',Consolas,'Courier New',monospace\""
 esc = html.escape
 
 def save(name, body, w, h, style=""):
-    open(OUT + "v2-" + name, "w").write(
+    open(OUT + "v3-" + name, "w").write(
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" shape-rendering="crispEdges">'
         f"<style>{style}</style>{body}</svg>")
 
@@ -331,3 +331,5 @@ if __name__ == "__main__":
         button(n, t)
     for i, p in enumerate(P):
         card(i, *p)
+    import vines
+    vines.apply_all(OUT, "v3-")
