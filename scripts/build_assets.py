@@ -280,28 +280,42 @@ def pubs():
         style = ".bd{animation:g 3s ease-in-out infinite}@keyframes g{50%{stroke:#7a3fd1}}.glint{animation:gl 3s ease-in-out infinite}@keyframes gl{0%{transform:translateX(-20px);opacity:0}40%{opacity:.5}80%,100%{transform:translateX(70px);opacity:0}}"
         save(f"pub-{i+1}.svg", b, W, H, style)
 
-# ---- tech stack: real logos (Simple Icons, CC0) in inventory slots ------
+# ---- tech stack: two marquee rows (opposite directions) of real logos ----
 def stack():
     import json
     icons = json.load(open(os.path.join(os.path.dirname(__file__), "icons.json")))
-    COLS, TW, TH, GX, GY = 7, 116, 118, 12, 12
-    rows = (len(icons) + COLS - 1) // COLS
-    W = COLS * TW + (COLS - 1) * GX
-    H = rows * TH + (rows - 1) * GY + 8
-    b = ""
-    for i, ic in enumerate(icons):
-        r, c = divmod(i, COLS)
-        x, y = c * (TW + GX), 4 + r * (TH + GY)
+    half = (len(icons) + 1) // 2
+    rows = [icons[:half], icons[half:]]
+    TW, TH, GAP = 100, 100, 12
+    PITCH = TW + GAP
+    W, H = 900, 16 + 2 * TH + GAP + 16
+    def tile(ic, x, y):
         hx = ic["hex"]
         lum = 0.3 * int(hx[0:2], 16) + 0.59 * int(hx[2:4], 16) + 0.11 * int(hx[4:6], 16)
         col = "#e8e8e8" if lum < 45 else "#" + hx
-        g = f'<g class="s" style="animation-delay:{i*0.05:.2f}s">' + slot(x, y, TW - 0)
-        g = g.replace('fill="#8b8b8b"', 'fill="#2a2b2e"').replace('fill="#373737"', 'fill="#0e0e10"').replace('fill="#ffffff"', 'fill="#5a5b60"')
-        g += f'<g transform="translate({x + TW/2 - 28:.1f} {y + 14}) scale(2.333)"><path fill="{col}" d="{ic["d"]}"/></g>'
-        g += f'<text x="{x + TW/2}" y="{y + TH - 16}" font-size="12" text-anchor="middle" fill="#cfcfcf" {MONO}>{esc(ic["name"])}</text>'
-        b += g + "</g>"
-    style = ".s{animation:pop .4s backwards}@keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}"
-    save("stack.svg", b, W, H, style)
+        g = slot(x, y, TW).replace('fill="#8b8b8b"', 'fill="#2a2b2e"').replace('fill="#373737"', 'fill="#0e0e10"').replace('fill="#ffffff"', 'fill="#5a5b60"')
+        g += f'<g transform="translate({x + TW/2 - 24:.1f} {y + 12}) scale(2)"><path fill="{col}" d="{ic["d"]}"/></g>'
+        g += f'<text x="{x + TW/2}" y="{y + TH - 14}" font-size="12" text-anchor="middle" fill="#cfcfcf" {MONO}>{esc(ic["name"])}</text>'
+        return g
+    b = ('<defs><linearGradient id="fade" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#000"/><stop offset=".07" stop-color="#fff"/>'
+         '<stop offset=".93" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>'
+         f'<mask id="m" maskUnits="userSpaceOnUse" x="0" y="0" width="{W}" height="{H}"><rect width="{W}" height="{H}" fill="url(#fade)"/></mask></defs>')
+    b += f'<rect width="{W}" height="{H}" fill="#151618"/><rect x="1" y="1" width="{W-2}" height="{H-2}" fill="none" stroke="#3a3b3f" stroke-width="2"/>'
+    b += '<g mask="url(#m)">'
+    style = ""
+    for r, row in enumerate(rows):
+        y = 16 + r * (TH + GAP)
+        span = len(row) * PITCH
+        g = "".join(tile(ic, i * PITCH, y) for i, ic in enumerate(row)) + "".join(tile(ic, span + i * PITCH, y) for i, ic in enumerate(row))
+        # enough copies to cover the view while the row slides
+        g += "".join(tile(ic, 2 * span + i * PITCH, y) for i, ic in enumerate(row))
+        b += f'<g class="r{r}">{g}</g>'
+        a, z = (0, -span) if r == 0 else (-span, 0)
+        dur = 48 if r == 0 else 56
+        style += f"@keyframes m{r}{{from{{transform:translateX({a}px)}}to{{transform:translateX({z}px)}}}}.r{r}{{animation:m{r} {dur}s linear infinite}}"
+    b += "</g>"
+    style += "@media (prefers-reduced-motion:reduce){.r0,.r1{animation:none}}"
+    save("stack-marquee.svg", b, W, H, style)
 
 # ---- advancement toasts ----------------------------------------------
 def toasts():
