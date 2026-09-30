@@ -149,4 +149,6 @@ def apply_all(assets_dir, prefix):
     for f in sorted(os.listdir(assets_dir)):
         if f.startswith(prefix) and f.endswith(".svg"):
             p = os.path.join(assets_dir, f)
-            open(p, "w", encoding="utf-8").write(strip(open(p, encoding="utf-8").read()))
+            with open(p, encoding="utf-8") as fh: data = fh.read()
+            if data.strip():
+                with open(p, "w", encoding="utf-8") as fh: fh.write(strip(data))
