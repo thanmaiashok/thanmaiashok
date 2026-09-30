@@ -13,11 +13,11 @@
 <img src="assets/v6-banner-adv.svg" width="100%" alt=""/>
 <img src="assets/v6-advancements-marquee.svg" width="100%" alt="Advancements: Published Author, Shipper, Founder, Healthcare AI, Model Miner, Green Thumb, Market Watcher, Graph Explorer, Automation, Bio Inspired, Quality Gate, Local First, Open Source, OSINT Ops, News Hound, Music Maker, Kafka Wrangler, Turbine Tuner, Da Vinci Mode, Ensemble Master, Forked, Docker Captain, Web Presence, Full Stack"/>
 
-<img src="assets/v6-banner-founder.svg" width="100%" alt="Founder of Foxyn AI"/>
-<a href="https://www.foxynai.com/"><img src="assets/v6-foxynai-card.svg" width="100%" alt="Foxyn AI: custom AI solutions and intelligent automation for businesses. Founder: Thanmai A."/></a>
+<img src="assets/v6-banner-foxynai.svg" width="100%" alt="Founder of FoxynAI"/>
+<a href="https://www.foxynai.com/"><img src="assets/v6-foxynai-hero.svg" width="100%" alt="FoxynAI: custom AI solutions and intelligent automation for businesses. Founder: Thanmai A."/></a>
 
-<a href="https://www.foxynai.com/"><img src="assets/v6-btn-site.svg" alt="Foxyn AI website" height="36"/></a>
-<a href="https://github.com/foxynaillp"><img src="assets/v6-btn-foxgh.svg" alt="Foxyn AI on GitHub" height="36"/></a>
+<a href="https://www.foxynai.com/"><img src="assets/v6-btn-site.svg" alt="FoxynAI website" height="36"/></a>
+<a href="https://github.com/foxynaillp"><img src="assets/v6-btn-foxgh.svg" alt="FoxynAI on GitHub" height="36"/></a>
 
 <img src="assets/v6-banner-projects.svg" width="100%" alt=""/>
 <p align="center"><a href="https://github.com/thanmaiashok/multimodal-graph-rag--datamesh"><img src="assets/v6-card-multimodal-graph-rag--datamesh.svg" width="49%" alt="multimodal-graph-rag--datamesh"/></a>

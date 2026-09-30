@@ -421,7 +421,7 @@ def foxynai():
     b += sprite(FOX, dict(o="#e07b2a", w="#f4efe6", b="#1a1a1a", n="#1a1a1a"), fx, fy, u)
     b += f'<g class="blink"><rect x="{fx+2*u}" y="{fy+3*u}" width="{u}" height="{u}" fill="#e07b2a"/><rect x="{fx+6*u}" y="{fy+3*u}" width="{u}" height="{u}" fill="#e07b2a"/></g>'
     # name, tagline, services
-    b += pixels("FOXYN AI", 184, 36, 5, "#ffcc55", "#5a3a00", 3)
+    b += pixels("FOXYNAI", 184, 36, 5, "#ffcc55", "#5a3a00", 3)
     b += f'<text x="186" y="104" font-size="16" fill="#e0e0e0" {MONO}>Custom AI solutions &amp; intelligent</text>'
     b += f'<text x="186" y="126" font-size="16" fill="#e0e0e0" {MONO}>automation for businesses.</text>'
     x = 186
@@ -472,13 +472,13 @@ def foxynai():
     style += f"@keyframes mk{{{kf}}}.mk{{animation:mk {CYC}s linear infinite}}"
     b += f'<g class="mk" opacity="0"><rect x="{start-8}" y="{ys}" width="16" height="10" fill="#ffcc55"/><rect x="{start-8}" y="{ys}" width="16" height="3" fill="#fff0c0"/></g>'
     b += f'<text x="{xs[2]+bw[2]+30}" y="{y0+18}" font-size="13" fill="#cfcfcf" {MONO}>Turning ideas into</text><text x="{xs[2]+bw[2]+30}" y="{y0+36}" font-size="13" fill="#cfcfcf" {MONO}>working software.</text>'
-    save("foxynai-card.svg", b, W, H, style)
+    save("foxynai-hero.svg", b, W, H, style)
 
 if __name__ == "__main__":
     header(); chat(); stack(); toasts(); foxynai(); footer(); pubs()
     for n, t, i in [("banner-projects.svg", "INVENTORY: PROJECTS", "pickaxe"), ("banner-papers.svg", "ENCHANTED BOOKS: PAPERS", "book"),
                     ("banner-tech.svg", "TECH STACK", "sword"), ("banner-activity.svg", "ACTIVITY: CONTRIBUTIONS", "emerald"),
-                    ("banner-about.svg", "SERVER CHAT", "paper"), ("banner-adv.svg", "ADVANCEMENTS", "star"), ("banner-founder.svg", "FOUNDER: FOXYN AI", "star")]:
+                    ("banner-about.svg", "SERVER CHAT", "paper"), ("banner-adv.svg", "ADVANCEMENTS", "star"), ("banner-foxynai.svg", "FOUNDER: FOXYNAI", "star")]:
         banner(n, t, i)
     for n, t in [("btn-foxynai.svg", "FOXYNAI"), ("btn-linkedin.svg", "LINKEDIN"), ("btn-email.svg", "EMAIL"), ("btn-instagram.svg", "INSTAGRAM"), ("btn-site.svg", "WEBSITE"), ("btn-foxgh.svg", "GITHUB")]:
         button(n, t)
