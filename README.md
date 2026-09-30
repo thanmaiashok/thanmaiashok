@@ -11,7 +11,7 @@
 
 <img src="assets/v6-banner-about.svg" width="100%" alt=""/>
 <img src="assets/v6-gap.svg" width="1" height="10" alt=""/>
-<img src="assets/v6-chat.svg" width="100%" alt="Server chat introducing Thanmai A"/>
+<img src="assets/v6-chat-live.svg" width="100%" alt="Server chat introducing Thanmai A"/>
 
 <p align="center"><img src="assets/v6-gap.svg" width="1" height="18" alt=""/></p>
 

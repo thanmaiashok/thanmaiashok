@@ -170,7 +170,7 @@ def button(name, text):
 
 # ---- chat window -----------------------------------------------------
 def chat():
-    """Scrolling server chat: one message per project, loops forever like a live game chat."""
+    """Live server chat: messages keep arriving and the log keeps scrolling, no stop, no restart."""
     proj = [("Multimodal Graph RAG", "knowledge graph + vector search + LLM retrieval", "#55ffff"),
             ("Universal Optimizer", "quantize, prune, distill any model, laptop to edge", "#ffff55"),
             ("AR Plant Health Checker", "browser AR disease detection, 97.3% accuracy", "#55ff55"),
@@ -182,7 +182,6 @@ def chat():
             ("Social Profile Intelligence", "OSINT across 40+ platforms, local LLM profiling", "#55ffff"),
             ("Micro Wind Analyzer", "turbine placement optimizer with 3D simulation", "#ffaa00"),
             ("Wine Quality ML Pipeline", "94% accuracy, ROC-AUC 0.955, CI-style quality gate", "#ff5555")]
-    # each message is a list of (text, color) segments
     T = "#ffffff"
     msgs = [[("[Server] Thanmai A joined the game", "#ffff55")],
             [("<Thanmai> ", T), ("AI and ML engineer. Founder of FoxynAI.", T)],
@@ -190,38 +189,35 @@ def chat():
     for i, (n, d, c) in enumerate(proj):
         msgs.append([("<Thanmai> ", T), (f"[{i+1}/11] ", "#aaaaaa"), (n + ": ", c), (d, T)])
     msgs += [[("<Thanmai> ", T), ("published: ", "#aaaaaa"), ("breast cancer prediction with XAI + ResNet101 (IEEE 2025)", "#55ffff")],
-             [("<Thanmai> ", T), ("published: ", "#aaaaaa"), ("liver cirrhosis staging with tuned ML models (2025)", "#55ffff")],
+             [("<Thanmai> ", T), ("published: ", "#aaaaaa"), ("liver cirrhosis staging with tuned ML models (IEEE 2025)", "#55ffff")],
              [("[Server] Thanmai A has made the advancement [Founder]", "#55ff55")]]
-    N, V, STEP, HOLD, RH = len(msgs), 9, 2.0, 6.0, 30
-    CYC = 0.6 + N * STEP + HOLD
+    N, V, STEP, RH = len(msgs), 9, 2.2, 30
+    CYC = N * STEP
     W, H = 900, 34 + V * RH
-    pc = lambda t: t / CYC * 100
-    b = f'<defs><clipPath id="vp"><rect x="0" y="16" width="{W}" height="{V*RH+8}"/></clipPath></defs>'
+    b = ('<defs><linearGradient id="cf" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#000"/><stop offset=".10" stop-color="#fff"/>'
+         '<stop offset=".90" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>'
+         f'<mask id="cm" maskUnits="userSpaceOnUse" x="0" y="0" width="{W}" height="{H}"><rect width="{W}" height="{H}" fill="url(#cf)"/></mask>'
+         f'<clipPath id="vp"><rect x="0" y="16" width="{W}" height="{V*RH+8}"/></clipPath></defs>')
     b += f'<rect width="{W}" height="{H}" fill="#1b1b1b"/><rect width="{W}" height="{H}" fill="#000" opacity=".25"/>'
     b += f'<rect width="{W}" height="4" fill="#3a3a3a"/><rect y="{H-4}" width="{W}" height="4" fill="#3a3a3a"/>'
-    style = ""
-    b += '<g clip-path="url(#vp)"><g class="all">'
-    shifts = []
-    for i, segs in enumerate(msgs):
-        t0 = 0.6 + i * STEP
-        s0, s1 = pc(t0), pc(t0) + 0.9
-        style += (f"@keyframes m{i}{{0%,{s0:.2f}%{{opacity:0;transform:translateX(-10px)}}{s1:.2f}%,94%{{opacity:1;transform:none}}98%,100%{{opacity:0;transform:none}}}}"
-                  f".m{i}{{animation:m{i} {CYC:.1f}s linear infinite}}")
-        y = 20 + i * RH
-        tsp = "".join(f'<tspan fill="{c}">{esc(t)}</tspan>' for t, c in segs)
-        b += (f'<g class="m{i}" opacity="0"><rect x="14" y="{y}" width="{W-28}" height="26" fill="#000" opacity=".35"/>'
-              f'<text x="24" y="{y+19}" font-size="14" xml:space="preserve" {MONO}>{tsp}</text></g>')
-        if i >= V:
-            shifts.append((pc(t0), -(i - V + 1) * RH))
-    b += "</g></g>"
-    kf = "0%{transform:translateY(0)}"
-    prev = 0
-    for pct, ty in shifts:
-        kf += f"{pct:.2f}%{{transform:translateY({prev}px)}}{pct+0.9:.2f}%{{transform:translateY({ty}px)}}"
-        prev = ty
-    kf += f"98%{{transform:translateY({prev}px)}}99%,100%{{transform:translateY(0)}}"
-    style += f"@keyframes sc{{{kf}}}.all{{animation:sc {CYC:.1f}s linear infinite}}"
-    save("chat.svg", b, W, H, style)
+    b += '<g clip-path="url(#vp)"><g mask="url(#cm)"><g class="feed">'
+    for copy in range(2):
+        for i, segs in enumerate(msgs):
+            y = 20 + (copy * N + i) * RH
+            tsp = "".join(f'<tspan fill="{c}">{esc(t)}</tspan>' for t, c in segs)
+            b += (f'<rect x="14" y="{y}" width="{W-28}" height="26" fill="#000" opacity=".35"/>'
+                  f'<text x="24" y="{y+19}" font-size="14" xml:space="preserve" {MONO}>{tsp}</text>')
+    b += "</g></g></g>"
+    # step the feed up one row per message (quick slide, then hold), forever
+    kf = ""
+    for k in range(N):
+        t0 = k / N * 100
+        hold = (STEP - 0.35) / CYC * 100
+        kf += f"{t0:.3f}%{{transform:translateY({-k*RH}px)}}{t0+hold:.3f}%{{transform:translateY({-k*RH}px)}}"
+    kf += f"100%{{transform:translateY({-N*RH}px)}}"
+    style = f"@keyframes feed{{{kf}}}.feed{{animation:feed {CYC:.1f}s cubic-bezier(.4,0,.2,1) infinite}}"
+    style += "@media (prefers-reduced-motion:reduce){.feed{animation:none}}"
+    save("chat-live.svg", b, W, H, style)
 
 # ---- inventory tooltip cards -----------------------------------------
 P = [
