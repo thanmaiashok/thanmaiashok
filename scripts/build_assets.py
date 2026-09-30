@@ -256,27 +256,45 @@ def card(i, repo, title, desc, stat, lang, icon, col):
 
 # ---- enchanted-book paper cards -------------------------------------
 PUBS = [
- ("Enhancing Breast Cancer Prediction in HER Health with XAI Technology and ResNet101", "SR Sreeram, N Subash, N Nithya, M Patil, A Thanmai", "2025 IEEE 17th International Conference on Computational Intelligence and ..."),
- ("Performance Analysis of Machine Learning Models for Liver Cirrhosis Staging with Hyperparameter Tuning", "GG Saralaya, N Subash, SV Raja, A Thanmai", "2025 5th International Conference on Emerging Research in Electronics ..."),
+ dict(title="Enhancing Breast Cancer Prediction in HER Health with XAI Technology and ResNet101",
+      authors="SR Sreeram, N Subash, N Nithya, Mohit Patil, A Thanmai",
+      venue="2025 IEEE 17th International Conference on Computational Intelligence and Communication Networks (CICN)",
+      meta="Published 2025/12/20  |  Pages 1394-1400  |  IEEE",
+      points=["ResNet101 fine-tuned to classify breast ultrasound images: benign, malignant or normal",
+              "Image augmentation and rebalancing to handle small, imbalanced data",
+              "Grad-CAM explainability shows what the model is looking at"]),
+ dict(title="Performance Analysis of Machine Learning Models for Liver Cirrhosis Staging with Hyperparameter Tuning",
+      authors="Gagan G Saralaya, N Subash, SV Raja, A Thanmai",
+      venue="2025 5th International Conference on Emerging Research in Electronics, Computer Science and Technology (ICERECT)",
+      meta="Published 2025/9/12  |  Pages 1-4  |  IEEE",
+      points=["XGBoost, Random Forest and LightGBM tuned to predict cirrhosis stages",
+              "New derived feature: the Bilirubin-Albumin ratio",
+              "Stratified splits, accuracy scores, classification reports and confusion matrices"]),
 ]
 def pubs():
-    for i, (t, a, v) in enumerate(PUBS):
-        tl = textwrap.wrap(t, 62)
-        H = 92 + len(tl) * 24 + 50
+    for i, p in enumerate(PUBS):
+        tl = textwrap.wrap(p["title"], 62)
+        vl = textwrap.wrap(p["venue"], 88)
+        H = 30 + len(tl) * 26 + 10 + 20 + len(vl) * 20 + 30 + len(p["points"]) * 20 + 42
         W = 900
         b = f'<rect width="{W}" height="{H}" fill="#100010"/>'
         b += f'<rect class="bd" x="4" y="4" width="{W-8}" height="{H-8}" fill="none" stroke="#3b0f80" stroke-width="4"/>'
         b += slot(24, 24, 72) + spr("book", 33, 33, 6)
         b += f'<rect class="glint" x="24" y="24" width="14" height="72" fill="#c9a0ff" opacity="0"/>'
-        for j, l in enumerate(tl):
-            b += f'<text x="116" y="{46+j*24}" font-size="19" font-weight="bold" fill="#55ffff" {MONO}>{esc(l)}</text>'
-        y = 46 + len(tl) * 24 + 4
-        b += f'<text x="116" y="{y}" font-size="13" fill="#aaaaaa" {MONO}>{esc(a)}</text>'
-        b += f'<text x="116" y="{y+22}" font-size="13" fill="#aaaaaa" font-style="italic" {MONO}>{esc(v)}</text>'
-        b += f'<text x="116" y="{y+48}" font-size="13" fill="#ffaa00" {MONO}>Published: 2025</text>'
-        b += f'<text x="{W-24}" y="{y+48}" font-size="13" fill="#ff55ff" text-anchor="end" {MONO}>Enchanted: Peer Reviewed</text>'
+        y = 46
+        for l in tl:
+            b += f'<text x="116" y="{y}" font-size="19" font-weight="bold" fill="#55ffff" {MONO}>{esc(l)}</text>'; y += 26
+        y += 4
+        b += f'<text x="116" y="{y}" font-size="13" fill="#cfcfcf" {MONO}>{esc(p["authors"])}</text>'; y += 24
+        for l in vl:
+            b += f'<text x="116" y="{y}" font-size="13" fill="#aaaaaa" font-style="italic" {MONO}>{esc(l)}</text>'; y += 20
+        y += 8
+        b += f'<text x="116" y="{y}" font-size="13" fill="#ffaa00" {MONO}>{esc(p["meta"])}</text>'; y += 26
+        for pt in p["points"]:
+            b += f'<text x="116" y="{y}" font-size="13" fill="#5555ff" {MONO}>+ {esc(pt)}</text>'; y += 20
+        b += f'<text x="{W-24}" y="{H-22}" font-size="13" fill="#ff55ff" text-anchor="end" {MONO}>Enchanted: Peer Reviewed</text>'
         style = ".bd{animation:g 3s ease-in-out infinite}@keyframes g{50%{stroke:#7a3fd1}}.glint{animation:gl 3s ease-in-out infinite}@keyframes gl{0%{transform:translateX(-20px);opacity:0}40%{opacity:.5}80%,100%{transform:translateX(70px);opacity:0}}"
-        save(f"pub-{i+1}.svg", b, W, H, style)
+        save(f"paper-{i+1}.svg", b, W, H, style)
 
 # ---- tech stack: two marquee rows (opposite directions) of real logos ----
 def stack():
