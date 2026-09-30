@@ -156,25 +156,57 @@ def button(name, text):
 
 # ---- chat window -----------------------------------------------------
 def chat():
-    lines = [("[Server] Thanmai A joined the game", "#ffff55"),
-             ("<Thanmai> hey. I'm an AI and ML engineer.", "#ffffff"),
-             ("<Thanmai> founder of FoxynAI.", "#ffffff"),
-             ("<Thanmai> I build RAG systems, compress models and ship computer vision apps.", "#ffffff"),
-             ("<Thanmai> 2 IEEE papers in 2025, both ML for healthcare.", "#ffffff"),
-             ("<Thanmai> 11 projects shipped. Most run locally, no paid APIs.", "#ffffff"),
-             ("[Server] Thanmai A has made the advancement [Founder]", "#55ff55")]
-    CYC, STEP = 18, 1.9
-    W, H = 900, 34 + len(lines) * 30
-    b = f'<rect width="{W}" height="{H}" fill="#1b1b1b"/><rect width="{W}" height="{H}" fill="#000" opacity=".25"/>'
+    """Scrolling server chat: one message per project, loops forever like a live game chat."""
+    proj = [("Multimodal Graph RAG", "knowledge graph + vector search + LLM retrieval", "#55ffff"),
+            ("Universal Optimizer", "quantize, prune, distill any model, laptop to edge", "#ffff55"),
+            ("AR Plant Health Checker", "browser AR disease detection, 97.3% accuracy", "#55ff55"),
+            ("Stock Bot", "AI paper trading on 18k+ US and India stocks, fully local", "#55ff55"),
+            ("News Intelligence", "distributed crawler, NLP pipeline, AI dashboard", "#ffffff"),
+            ("ReelForge", "autonomous agent that edits 9:16 shorts end to end, locally", "#ff5555"),
+            ("NeuroReflex-X", "drone pursuit inspired by hawk, locust and dragonfly", "#ff55ff"),
+            ("Vinci AI", "da Vinci reasoning assistant, local LLM + FAISS search", "#ff55ff"),
+            ("Social Profile Intelligence", "OSINT across 40+ platforms, local LLM profiling", "#55ffff"),
+            ("Micro Wind Analyzer", "turbine placement optimizer with 3D simulation", "#ffaa00"),
+            ("Wine Quality ML Pipeline", "94% accuracy, ROC-AUC 0.955, CI-style quality gate", "#ff5555")]
+    # each message is a list of (text, color) segments
+    T = "#ffffff"
+    msgs = [[("[Server] Thanmai A joined the game", "#ffff55")],
+            [("<Thanmai> ", T), ("AI and ML engineer. Founder of FoxynAI.", T)],
+            [("<Thanmai> ", T), ("here is everything I have built:", T)]]
+    for i, (n, d, c) in enumerate(proj):
+        msgs.append([("<Thanmai> ", T), (f"[{i+1}/11] ", "#aaaaaa"), (n + ": ", c), (d, T)])
+    msgs += [[("<Thanmai> ", T), ("published: ", "#aaaaaa"), ("breast cancer prediction with XAI + ResNet101 (IEEE 2025)", "#55ffff")],
+             [("<Thanmai> ", T), ("published: ", "#aaaaaa"), ("liver cirrhosis staging with tuned ML models (2025)", "#55ffff")],
+             [("[Server] Thanmai A has made the advancement [Founder]", "#55ff55")]]
+    N, V, STEP, HOLD, RH = len(msgs), 9, 2.0, 6.0, 30
+    CYC = 0.6 + N * STEP + HOLD
+    W, H = 900, 34 + V * RH
+    pc = lambda t: t / CYC * 100
+    b = f'<defs><clipPath id="vp"><rect x="0" y="16" width="{W}" height="{V*RH+8}"/></clipPath></defs>'
+    b += f'<rect width="{W}" height="{H}" fill="#1b1b1b"/><rect width="{W}" height="{H}" fill="#000" opacity=".25"/>'
     b += f'<rect width="{W}" height="4" fill="#3a3a3a"/><rect y="{H-4}" width="{W}" height="4" fill="#3a3a3a"/>'
     style = ""
-    for i, (t, c) in enumerate(lines):
-        s0 = (0.6 + i * STEP) / CYC * 100
-        s1 = s0 + 1.2
-        style += (f"@keyframes c{i}{{0%,{s0:.2f}%{{opacity:0;transform:translateX(-10px)}}{s1:.2f}%,92%{{opacity:1;transform:none}}97%,100%{{opacity:0;transform:none}}}}"
-                  f".c{i}{{animation:c{i} {CYC}s linear infinite}}")
-        b += (f'<g class="c{i}" opacity="0"><rect x="14" y="{20+i*30}" width="{W-28}" height="26" fill="#000" opacity=".35"/>'
-              f'<text x="24" y="{39+i*30}" font-size="15" fill="{c}" {MONO}>{esc(t)}</text></g>')
+    b += '<g clip-path="url(#vp)"><g class="all">'
+    shifts = []
+    for i, segs in enumerate(msgs):
+        t0 = 0.6 + i * STEP
+        s0, s1 = pc(t0), pc(t0) + 0.9
+        style += (f"@keyframes m{i}{{0%,{s0:.2f}%{{opacity:0;transform:translateX(-10px)}}{s1:.2f}%,94%{{opacity:1;transform:none}}98%,100%{{opacity:0;transform:none}}}}"
+                  f".m{i}{{animation:m{i} {CYC:.1f}s linear infinite}}")
+        y = 20 + i * RH
+        tsp = "".join(f'<tspan fill="{c}">{esc(t)}</tspan>' for t, c in segs)
+        b += (f'<g class="m{i}" opacity="0"><rect x="14" y="{y}" width="{W-28}" height="26" fill="#000" opacity=".35"/>'
+              f'<text x="24" y="{y+19}" font-size="14" xml:space="preserve" {MONO}>{tsp}</text></g>')
+        if i >= V:
+            shifts.append((pc(t0), -(i - V + 1) * RH))
+    b += "</g></g>"
+    kf = "0%{transform:translateY(0)}"
+    prev = 0
+    for pct, ty in shifts:
+        kf += f"{pct:.2f}%{{transform:translateY({prev}px)}}{pct+0.9:.2f}%{{transform:translateY({ty}px)}}"
+        prev = ty
+    kf += f"98%{{transform:translateY({prev}px)}}99%,100%{{transform:translateY(0)}}"
+    style += f"@keyframes sc{{{kf}}}.all{{animation:sc {CYC:.1f}s linear infinite}}"
     save("chat.svg", b, W, H, style)
 
 # ---- inventory tooltip cards -----------------------------------------
