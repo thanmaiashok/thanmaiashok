@@ -103,19 +103,30 @@ def header():
         if rnd.random() < .5:
             b += f'<rect x="{x}" y="{GY}" width="8" height="8" fill="{rnd.choice(["#4f8a2f", "#6fb84a"])}"/>'
     b += f'<rect y="{GY+16}" width="{W}" height="8" fill="#4a7a2a"/>'
-    # creeper
-    cx, cy, u = 860, GY - 96, 8
-    b += '<g class="cr">'
-    b += f'<rect x="{cx}" y="{cy}" width="{u*8}" height="{u*8}" fill="#4caf50"/>'
-    for px, py, pw, ph in [(1,2,2,2),(5,2,2,2),(3,4,2,3),(2,5,1,3),(5,5,1,3)]:
-        b += f'<rect x="{cx+px*u}" y="{cy+py*u}" width="{pw*u}" height="{ph*u}" fill="#101810"/>'
-    for i in range(0, 8):
-        for j in range(0, 8):
-            if (i * 7 + j * 3) % 5 == 0:
-                b += f'<rect x="{cx+i*u}" y="{cy+j*u}" width="{u}" height="{u}" fill="#3e9143"/>'
-    b += f'<rect x="{cx+u*2}" y="{cy+u*8}" width="{u*4}" height="{u*3}" fill="#43a047"/>'
-    b += f'<rect x="{cx+u}" y="{cy+u*11}" width="{u*2}" height="{GY-cy-u*11}" fill="#3a8f3f"/><rect x="{cx+u*5}" y="{cy+u*11}" width="{u*2}" height="{GY-cy-u*11}" fill="#3a8f3f"/>'
-    b += "</g>"
+    # Steve, standing on the right
+    u = 4; sx, sy = 826, GY - 32 * u
+    def R(x, y, w, h, c): return f'<rect x="{sx + x*u}" y="{sy + y*u}" width="{w*u}" height="{h*u}" fill="{c}"/>'
+    st = '<g class="steve">'
+    hx = 4
+    def HD(x, y, w, h, c): return R(hx + x, y, w, h, c)
+    st += HD(0, 0, 8, 2, "#3b2a1c") + HD(0, 2, 8, 6, "#c68a5c") + HD(0, 2, 1, 2, "#3b2a1c") + HD(7, 2, 1, 2, "#3b2a1c")
+    st += HD(1, 4, 2, 1, "#ffffff") + HD(5, 4, 2, 1, "#ffffff") + HD(2, 4, 1, 1, "#4a3aa8") + HD(5, 4, 1, 1, "#4a3aa8")   # eyes
+    st += HD(3, 5, 2, 1, "#a9714b") + HD(2, 6, 4, 1, "#6b4229") + HD(3, 7, 2, 1, "#6b4229")                              # nose, mouth
+    st += R(4, 8, 8, 12, "#2aa5b5") + R(7, 8, 2, 1, "#c68a5c")                                                         # shirt, neckline
+    st += R(0, 8, 4, 4, "#2aa5b5") + R(12, 8, 4, 4, "#2aa5b5") + R(0, 12, 4, 8, "#c68a5c") + R(12, 12, 4, 8, "#c68a5c")   # arms
+    st += R(4, 20, 4, 10, "#3c44aa") + R(8, 20, 4, 10, "#333a96") + R(4, 30, 4, 2, "#6b6b6b") + R(8, 30, 4, 2, "#5a5a5a")   # legs, shoes
+    st += "</g>"
+    b += st
+    # small creeper walking in from the left edge
+    cu = 3; cx0, cy0 = 0, GY - 17 * cu
+    def C(x, y, w, h, c): return f'<rect x="{cx0 + x*cu}" y="{cy0 + y*cu}" width="{w*cu}" height="{h*cu}" fill="{c}"/>'
+    cr = '<g class="walk"><g class="hiss">'
+    cr += C(0, 0, 8, 8, "#4caf50") + C(1, 2, 2, 2, "#101810") + C(5, 2, 2, 2, "#101810") + C(3, 4, 2, 3, "#101810") + C(2, 5, 1, 3, "#101810") + C(5, 5, 1, 3, "#101810")
+    for i, j in [(0, 0), (0, 4), (1, 1), (3, 0), (7, 3), (6, 6), (4, 7), (7, 7)]:
+        cr += C(i, j, 1, 1, "#3e9143")
+    cr += C(1, 8, 6, 6, "#43a047") + C(2, 10, 1, 1, "#3a8f3f") + C(5, 12, 1, 1, "#3a8f3f")
+    cr += '<g class="legs">' + C(1, 14, 3, 3, "#3a8f3f") + C(4, 14, 3, 3, "#347f38") + "</g></g></g>"
+    b += cr
     # title
     b += pixels("THANMAI A", 50, 58, 9, "#ffffff", "#3a3a3a", 5)
     b += pixels("AI & ML ENGINEER", 52, 148, 4, "#ffd23a", "#4a3a00", 3)
@@ -125,9 +136,14 @@ def header():
 @keyframes d1{from{transform:translate(60px,30px)}to{transform:translate(1060px,30px)}}
 @keyframes d2{from{transform:translate(520px,70px)}to{transform:translate(-120px,70px)}}
 @keyframes d3{from{transform:translate(300px,18px)}to{transform:translate(1100px,18px)}}
-.cr{animation:hiss 3s ease-in-out infinite;transform-origin:892px 268px}
-@keyframes hiss{0%,70%,100%{transform:scale(1)}80%{transform:scale(1.07,.96)}90%{transform:scale(.98,1.04)}}"""
-    save("header.svg", b, W, H, style)
+.steve{animation:idle 3s ease-in-out infinite}@keyframes idle{50%{transform:translateY(-2px)}}
+.walk{animation:walk 14s linear infinite}
+@keyframes walk{0%{transform:translateX(-50px);opacity:1}64%{transform:translateX(730px);opacity:1}86%{transform:translateX(730px);opacity:1}92%{transform:translateX(730px);opacity:0}93%,100%{transform:translateX(-50px);opacity:0}}
+.hiss{animation:hiss 14s linear infinite;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes hiss{0%,66%{transform:scale(1)}72%{transform:scale(1.18,.92)}78%{transform:scale(.95,1.08)}84%{transform:scale(1.22,.9)}100%{transform:scale(1)}}
+.legs{animation:step .5s steps(2) infinite}@keyframes step{50%{transform:translateY(-2px)}}
+"""
+    save("header2.svg", b, W, H, style)
 
 # ---- section banner (wood sign) --------------------------------------
 def banner(name, text, icon):
