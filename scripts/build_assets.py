@@ -442,8 +442,32 @@ def foxynai():
     style = ".bd{animation:g 3s ease-in-out infinite}@keyframes g{50%{stroke:#7a3fd1}}"
     save("foxynai-brand.svg", b, W, H, style)
 
+# ---- section divider: stone strip with a gold emblem and a gliding highlight ----
+def divider():
+    rnd = random.Random(11)
+    W, H, U = 900, 44, 6
+    y0 = H // 2 - U
+    b = ('<defs><linearGradient id="df" x1="0" x2="1"><stop offset="0" stop-color="#000"/><stop offset=".12" stop-color="#fff"/>'
+         '<stop offset=".88" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>'
+         f'<mask id="dm" maskUnits="userSpaceOnUse" x="0" y="0" width="{W}" height="{H}"><rect width="{W}" height="{H}" fill="url(#df)"/></mask></defs>')
+    b += '<g mask="url(#dm)">'
+    for x in range(0, W, U):
+        if abs(x + U / 2 - W / 2) < 40: continue
+        for k in range(2):
+            c = rnd.choice(["#5a5b60", "#4a4b50", "#3a3b3f", "#6a6b70"])
+            b += f'<rect x="{x}" y="{y0 + k*U}" width="{U}" height="{U}" fill="{c}"/>'
+    b += f'<rect class="gl" x="-40" y="{y0}" width="36" height="{2*U}" fill="#d9a441" opacity=".55"/>'
+    b += '</g>'
+    # emblem in the middle: a small pixel diamond flanked by two dots
+    cx, cy = W // 2, H // 2
+    for (dx, dy, c) in [(0,-2,"#ffcc55"),(-1,-1,"#d9a441"),(0,-1,"#ffcc55"),(1,-1,"#d9a441"),(-2,0,"#d9a441"),(-1,0,"#ffcc55"),(0,0,"#fff0c0"),(1,0,"#ffcc55"),(2,0,"#d9a441"),
+                        (-1,1,"#d9a441"),(0,1,"#ffcc55"),(1,1,"#d9a441"),(0,2,"#9a7428"),(-4,0,"#6a6b70"),(4,0,"#6a6b70")]:
+        b += f'<rect x="{cx + dx*U - U//2}" y="{cy + dy*U - U//2}" width="{U}" height="{U}" fill="{c}"/>'
+    style = f".gl{{animation:glide 7s linear infinite}}@keyframes glide{{from{{transform:translateX(0)}}to{{transform:translateX({W+80}px)}}}}@media (prefers-reduced-motion:reduce){{.gl{{animation:none;opacity:0}}}}"
+    save("divider.svg", b, W, H, style)
+
 if __name__ == "__main__":
-    header(); chat(); stack(); toasts(); foxynai(); footer(); pubs()
+    header(); chat(); stack(); toasts(); foxynai(); footer(); pubs(); divider()
     for n, t, i in [("banner-projects.svg", "INVENTORY: PROJECTS", "pickaxe"), ("banner-papers.svg", "ENCHANTED BOOKS: PAPERS", "book"),
                     ("banner-tech.svg", "TECH STACK", "sword"), ("banner-activity.svg", "ACTIVITY: CONTRIBUTIONS", "emerald"),
                     ("banner-about.svg", "SERVER CHAT", "paper"), ("banner-adv.svg", "ADVANCEMENTS", "star"), ("banner-foxynai.svg", "FOUNDER: FOXYNAI", "star")]:
