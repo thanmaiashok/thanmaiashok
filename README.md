@@ -13,6 +13,12 @@
 <img src="assets/v6-banner-adv.svg" width="100%" alt=""/>
 <img src="assets/v6-toasts.svg" width="100%" alt="Advancements: published author, shipper, founder"/>
 
+<img src="assets/v6-banner-founder.svg" width="100%" alt="Founder of Foxyn AI"/>
+<a href="https://www.foxynai.com/"><img src="assets/v6-foxynai.svg" width="100%" alt="Foxyn AI: custom AI solutions and intelligent automation for businesses. Founder: Thanmai A."/></a>
+
+<a href="https://www.foxynai.com/"><img src="assets/v6-btn-site.svg" alt="Foxyn AI website" height="36"/></a>
+<a href="https://github.com/foxynaillp"><img src="assets/v6-btn-foxgh.svg" alt="Foxyn AI on GitHub" height="36"/></a>
+
 <img src="assets/v6-banner-projects.svg" width="100%" alt=""/>
 <p align="center"><a href="https://github.com/thanmaiashok/multimodal-graph-rag--datamesh"><img src="assets/v6-card-multimodal-graph-rag--datamesh.svg" width="49%" alt="multimodal-graph-rag--datamesh"/></a>
 <a href="https://github.com/thanmaiashok/universal-optimizer"><img src="assets/v6-card-universal-optimizer.svg" width="49%" alt="universal-optimizer"/></a></p>

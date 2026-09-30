@@ -348,13 +348,29 @@ def footer():
     b += pixels("THANKS FOR VISITING", (W - width("THANKS FOR VISITING", 3)) // 2, 30, 3, "#ffffff", "#3a2a10", 2)
     save("footer.svg", b, W, H)
 
+# ---- FoxynAI feature card ----------------------------------------------------
+FOX = ["o.......o", "oo.....oo", "ooooooooo", "ooboooboo", "owwooowwo", "owwwwwwwo", ".owwwwwo.", "..owwwo..", "...ono..."]
+def foxynai():
+    W, H = 900, 176
+    b = f'<rect width="{W}" height="{H}" fill="#100010"/>'
+    b += f'<rect class="bd" x="4" y="4" width="{W-8}" height="{H-8}" fill="none" stroke="#3b0f80" stroke-width="4"/>'
+    b += slot(24, 26, 88) + sprite(FOX, dict(o="#e07b2a", w="#f4efe6", b="#1a1a1a", n="#1a1a1a"), 32, 34, 8)
+    b += f'<text x="136" y="50" font-size="22" font-weight="bold" fill="#ffaa00" {MONO}>Foxyn AI</text>'
+    b += f'<text x="136" y="78" font-size="14" fill="#cfcfcf" {MONO}>Custom AI solutions &amp; intelligent automation for businesses.</text>'
+    b += f'<text x="136" y="104" font-size="13" fill="#5555ff" {MONO}>+ Founder: Thanmai A</text>'
+    b += f'<text x="136" y="124" font-size="13" fill="#5555ff" {MONO}>+ Building AI products that turn ideas into working software</text>'
+    b += f'<text x="136" y="{H-22}" font-size="12" fill="#aaaaaa" {MONO}>foxynai.com</text>'
+    b += f'<text x="{W-24}" y="{H-22}" font-size="11" text-anchor="end" fill="#777777" {MONO}>github.com/foxynaillp</text>'
+    style = ".bd{animation:g 3s ease-in-out infinite}@keyframes g{50%{stroke:#7a3fd1}}"
+    save("foxynai.svg", b, W, H, style)
+
 if __name__ == "__main__":
-    header(); chat(); stack(); toasts(); footer(); pubs()
+    header(); chat(); stack(); toasts(); foxynai(); footer(); pubs()
     for n, t, i in [("banner-projects.svg", "INVENTORY: PROJECTS", "pickaxe"), ("banner-papers.svg", "ENCHANTED BOOKS: PAPERS", "book"),
                     ("banner-tech.svg", "TECH STACK", "sword"), ("banner-activity.svg", "ACTIVITY: CONTRIBUTIONS", "emerald"),
-                    ("banner-about.svg", "SERVER CHAT", "paper"), ("banner-adv.svg", "ADVANCEMENTS", "star")]:
+                    ("banner-about.svg", "SERVER CHAT", "paper"), ("banner-adv.svg", "ADVANCEMENTS", "star"), ("banner-founder.svg", "FOUNDER: FOXYN AI", "star")]:
         banner(n, t, i)
-    for n, t in [("btn-foxynai.svg", "FOXYNAI"), ("btn-linkedin.svg", "LINKEDIN"), ("btn-email.svg", "EMAIL"), ("btn-instagram.svg", "INSTAGRAM")]:
+    for n, t in [("btn-foxynai.svg", "FOXYNAI"), ("btn-linkedin.svg", "LINKEDIN"), ("btn-email.svg", "EMAIL"), ("btn-instagram.svg", "INSTAGRAM"), ("btn-site.svg", "WEBSITE"), ("btn-foxgh.svg", "GITHUB")]:
         button(n, t)
     for i, p in enumerate(P):
         card(i, *p)
