@@ -113,10 +113,18 @@ def header():
     st += HD(1, 4, 2, 1, "#ffffff") + HD(5, 4, 2, 1, "#ffffff") + HD(2, 4, 1, 1, "#4a3aa8") + HD(5, 4, 1, 1, "#4a3aa8")   # eyes
     st += HD(3, 5, 2, 1, "#a9714b") + HD(2, 6, 4, 1, "#6b4229") + HD(3, 7, 2, 1, "#6b4229")                              # nose, mouth
     st += R(4, 8, 8, 12, "#2aa5b5") + R(7, 8, 2, 1, "#c68a5c")                                                         # shirt, neckline
-    st += R(0, 8, 4, 4, "#2aa5b5") + R(12, 8, 4, 4, "#2aa5b5") + R(0, 12, 4, 8, "#c68a5c") + R(12, 12, 4, 8, "#c68a5c")   # arms
+    st += R(0, 8, 4, 4, "#2aa5b5") + R(0, 12, 4, 8, "#c68a5c")                                                         # left arm (still)
+    st += '<g class="arm">' + R(12, 8, 4, 4, "#2aa5b5") + R(12, 12, 4, 8, "#c68a5c") + "</g>"                       # right arm (waves)
     st += R(4, 20, 4, 10, "#3c44aa") + R(8, 20, 4, 10, "#333a96") + R(4, 30, 4, 2, "#6b6b6b") + R(8, 30, 4, 2, "#5a5a5a")   # legs, shoes
     st += "</g>"
     b += st
+    # speech bubble: "HI!" while Steve waves (every 5 seconds)
+    bx, by, bw, bh = 748, 122, 66, 38
+    say = '<g class="say">'
+    say += f'<path fill="#1b1b1b" d="M{bx-3} {by-3}h{bw+6}v{bh+6}h-{bw+6}zM{bx+bw+3} {by+12}h9v9h-9z"/>'
+    say += f'<path fill="#ffffff" d="M{bx} {by}h{bw}v{bh}h-{bw}zM{bx+bw} {by+15}h8v6h-8z"/>'
+    say += pixels("HI!", bx + (bw - width("HI!", 3)) // 2, by + (bh - 21) // 2, 3, "#1b1b1b")
+    b += say + "</g>"
     # title
     b += pixels("THANMAI A", 50, 58, 9, "#ffffff", "#3a3a3a", 5)
     b += pixels("AI & ML ENGINEER", 52, 148, 4, "#ffd23a", "#4a3a00", 3)
@@ -127,8 +135,13 @@ def header():
 @keyframes d2{from{transform:translate(520px,70px)}to{transform:translate(-120px,70px)}}
 @keyframes d3{from{transform:translate(300px,18px)}to{transform:translate(1100px,18px)}}
 .steve{animation:idle 3s ease-in-out infinite}@keyframes idle{50%{transform:translateY(-2px)}}
+.arm{transform-box:view-box;transform-origin:882px 176px;animation:wave 5s ease-in-out infinite}
+@keyframes wave{0%,6%{transform:rotate(0)}12%{transform:rotate(-135deg)}20%{transform:rotate(-108deg)}28%{transform:rotate(-135deg)}36%{transform:rotate(-108deg)}44%{transform:rotate(-135deg)}52%{transform:rotate(-108deg)}60%{transform:rotate(-135deg)}68%,100%{transform:rotate(0)}}
+.say{opacity:0;transform-box:fill-box;transform-origin:100% 100%;animation:say 5s linear infinite}
+@keyframes say{0%,8%{opacity:0;transform:scale(.6)}12%{opacity:1;transform:scale(1.1)}14%,64%{opacity:1;transform:scale(1)}68%,100%{opacity:0;transform:scale(.8)}}
+@media (prefers-reduced-motion:reduce){.arm{animation:none}.say{animation:none;opacity:0}}
 """
-    save("header3.svg", b, W, H, style)
+    save("header4.svg", b, W, H, style)
 
 # ---- section banner (wood sign) --------------------------------------
 def banner(name, text, icon):
