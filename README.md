@@ -1,24 +1,27 @@
 <div align="center">
 
-<img src="assets/header.svg" alt="Thanmai A" width="100%"/>
+<img src="assets/header.svg" alt="Thanmai A, AI/ML engineer at FoxynAI" width="100%"/>
 
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=20&pause=1200&color=58A6FF&center=true&vCenter=true&width=760&lines=Building+products%2C+experimenting+with+AI;Multimodal+RAG+%C2%B7+model+optimization+%C2%B7+computer+vision;Two+IEEE+papers+in+2025" alt=""/></a>
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=20&pause=1200&color=58A6FF&center=true&vCenter=true&width=760&lines=AI+%2F+ML+engineer+%40+FoxynAI;Multimodal+RAG+%C2%B7+model+optimization+%C2%B7+computer+vision;Two+IEEE+papers+in+2025;Ideas+into+working+software" alt=""/></a>
 
 <p>
-  <a href="https://www.linkedin.com/in/thanmai-a-725b19278/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white"/></a>
-  <a href="mailto:thanmaiashok@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white"/></a>
-  <a href="https://instagram.com/thanmai_ashok"><img src="https://img.shields.io/badge/Instagram-E4405F?style=flat-square&logo=instagram&logoColor=white"/></a>
+  <a href="https://github.com/foxynaillp"><img src="https://img.shields.io/badge/FoxynAI-ff7a3d?style=for-the-badge&logo=github&logoColor=white"/></a>
+  <a href="https://www.linkedin.com/in/thanmai-a-725b19278/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
+  <a href="mailto:thanmaiashok@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/></a>
+  <a href="https://instagram.com/thanmai_ashok"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"/></a>
 </p>
-
-</div>
-
-I build things and turn ideas into working software. Most of it is AI: retrieval systems, model compression, computer vision, and a few odd projects like a drone that borrows tricks from hawks. I also publish. Two papers came out in 2025, both applying ML to healthcare.
-
-Everything below runs locally, with no paid APIs where I could avoid them.
 
 <img src="assets/terminal.svg" alt="" width="100%"/>
 
-## Projects
+</div>
+
+### About
+
+I work at [FoxynAI](https://github.com/foxynaillp), building AI products and turning ideas into working software. My work sits in retrieval systems, model compression, computer vision and applied ML, plus a few unusual projects like a drone pursuit framework modelled on hawk and dragonfly neuroscience. I also publish: two IEEE conference papers in 2025, both on ML for healthcare.
+
+I default to local and open tooling: most of what is below runs on a laptop with no paid APIs.
+
+### Projects
 
 <table>
 <tr><td><a href="https://github.com/thanmaiashok/multimodal-graph-rag--datamesh"><img src="assets/card-multimodal-graph-rag--datamesh.svg" width="480" alt="multimodal-graph-rag--datamesh"/></a></td><td><a href="https://github.com/thanmaiashok/universal-optimizer"><img src="assets/card-universal-optimizer.svg" width="480" alt="universal-optimizer"/></a></td></tr>
@@ -29,24 +32,28 @@ Everything below runs locally, with no paid APIs where I could avoid them.
 <tr><td><a href="https://github.com/thanmaiashok/wine-quality-mlpipeline-DML"><img src="assets/card-wine-quality-mlpipeline-DML.svg" width="480" alt="wine-quality-mlpipeline-DML"/></a></td><td></td></tr>
 </table>
 
-## Papers
+### Publications
 
 <a href="https://scholar.google.com/scholar?q=Enhancing+Breast+Cancer+Prediction+in+HER+Health+with+XAI+Technology+and+ResNet101"><img src="assets/pub-1.svg" width="100%" alt="Enhancing Breast Cancer Prediction in HER Health with XAI Technology and ResNet101"/></a>
 
 <a href="https://scholar.google.com/scholar?q=Performance+Analysis+of+Machine+Learning+Models+for+Liver+Cirrhosis+Staging+with+Hyperparameter+Tuning"><img src="assets/pub-2.svg" width="100%" alt="Performance Analysis of Machine Learning Models for Liver Cirrhosis Staging with Hyperparameter Tuning"/></a>
 
-## Tools I use
+### Stack
 
 <img src="https://skillicons.dev/icons?i=python,js,react,nodejs,fastapi,docker,pytorch,tensorflow,sklearn,opencv,threejs,git,linux&theme=dark"/>
 
-## Activity
+### Activity
 
-<p>
+<p align="center">
   <img height="160" src="https://github-readme-stats.vercel.app/api?username=thanmaiashok&show_icons=true&theme=tokyonight&hide_border=true&count_private=true"/>
   <img height="160" src="https://streak-stats.demolab.com/?user=thanmaiashok&theme=tokyonight&hide_border=true"/>
 </p>
+
+<img src="https://raw.githubusercontent.com/thanmaiashok/thanmaiashok/main/profile-3d-contrib/profile-night-rainbow.svg" width="100%" alt="3D contribution graph"/>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thanmaiashok/thanmaiashok/output/github-snake-dark.svg"/>
   <img alt="contribution snake" src="https://raw.githubusercontent.com/thanmaiashok/thanmaiashok/output/github-snake.svg"/>
 </picture>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" width="100%" alt=""/>
