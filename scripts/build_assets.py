@@ -117,16 +117,6 @@ def header():
     st += R(4, 20, 4, 10, "#3c44aa") + R(8, 20, 4, 10, "#333a96") + R(4, 30, 4, 2, "#6b6b6b") + R(8, 30, 4, 2, "#5a5a5a")   # legs, shoes
     st += "</g>"
     b += st
-    # small creeper walking in from the left edge
-    cu = 3; cx0, cy0 = 0, GY - 17 * cu
-    def C(x, y, w, h, c): return f'<rect x="{cx0 + x*cu}" y="{cy0 + y*cu}" width="{w*cu}" height="{h*cu}" fill="{c}"/>'
-    cr = '<g class="walk"><g class="hiss">'
-    cr += C(0, 0, 8, 8, "#4caf50") + C(1, 2, 2, 2, "#101810") + C(5, 2, 2, 2, "#101810") + C(3, 4, 2, 3, "#101810") + C(2, 5, 1, 3, "#101810") + C(5, 5, 1, 3, "#101810")
-    for i, j in [(0, 0), (0, 4), (1, 1), (3, 0), (7, 3), (6, 6), (4, 7), (7, 7)]:
-        cr += C(i, j, 1, 1, "#3e9143")
-    cr += C(1, 8, 6, 6, "#43a047") + C(2, 10, 1, 1, "#3a8f3f") + C(5, 12, 1, 1, "#3a8f3f")
-    cr += '<g class="legs">' + C(1, 14, 3, 3, "#3a8f3f") + C(4, 14, 3, 3, "#347f38") + "</g></g></g>"
-    b += cr
     # title
     b += pixels("THANMAI A", 50, 58, 9, "#ffffff", "#3a3a3a", 5)
     b += pixels("AI & ML ENGINEER", 52, 148, 4, "#ffd23a", "#4a3a00", 3)
@@ -137,13 +127,8 @@ def header():
 @keyframes d2{from{transform:translate(520px,70px)}to{transform:translate(-120px,70px)}}
 @keyframes d3{from{transform:translate(300px,18px)}to{transform:translate(1100px,18px)}}
 .steve{animation:idle 3s ease-in-out infinite}@keyframes idle{50%{transform:translateY(-2px)}}
-.walk{animation:walk 14s linear infinite}
-@keyframes walk{0%{transform:translateX(-50px);opacity:1}64%{transform:translateX(730px);opacity:1}86%{transform:translateX(730px);opacity:1}92%{transform:translateX(730px);opacity:0}93%,100%{transform:translateX(-50px);opacity:0}}
-.hiss{animation:hiss 14s linear infinite;transform-box:fill-box;transform-origin:50% 100%}
-@keyframes hiss{0%,66%{transform:scale(1)}72%{transform:scale(1.18,.92)}78%{transform:scale(.95,1.08)}84%{transform:scale(1.22,.9)}100%{transform:scale(1)}}
-.legs{animation:step .5s steps(2) infinite}@keyframes step{50%{transform:translateY(-2px)}}
 """
-    save("header2.svg", b, W, H, style)
+    save("header3.svg", b, W, H, style)
 
 # ---- section banner (wood sign) --------------------------------------
 def banner(name, text, icon):
