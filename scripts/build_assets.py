@@ -50,6 +50,8 @@ SPR = {
           dict(s="#dfe4ea", g="#c9a227", b="#8b5a2b")),
 "star": (["...yy...", "...yy...", "yyyyyyyy", ".yyyyyy.", "..yyyy..", ".yyyyyy.", ".yy..yy.", "yy....yy"],
          dict(y="#ffd23a")),
+"tmark": (["tttttttt", "tTTTTTTt", "...TT...", "...TT...", "...TT...", "...TT...", "...TT...", "..tTTt.."],
+          dict(t="#1c76e8", T="#7ebeff")),
 "sapling2": None,
 }
 def spr(name, x, y, s):
@@ -171,7 +173,8 @@ def button(name, text):
 # ---- chat window -----------------------------------------------------
 def chat():
     """Live server chat: messages keep arriving and the log keeps scrolling, no stop, no restart."""
-    proj = [("Multimodal Graph RAG", "knowledge graph + vector search + LLM retrieval", "#55ffff"),
+    proj = [("OpenTan Studio", "open-source image, video and 3D studio for any coding agent", "#55aaff"),
+            ("Multimodal Graph RAG", "knowledge graph + vector search + LLM retrieval", "#55ffff"),
             ("Universal Optimizer", "quantize, prune, distill any model, laptop to edge", "#ffff55"),
             ("AR Plant Health Checker", "browser AR disease detection, 97.3% accuracy", "#55ff55"),
             ("Stock Bot", "AI paper trading on 18k+ US and India stocks, fully local", "#55ff55"),
@@ -187,7 +190,7 @@ def chat():
             [("<Thanmai> ", T), ("AI and ML engineer. Founder of FoxynAI.", T)],
             [("<Thanmai> ", T), ("here is everything I have built:", T)]]
     for i, (n, d, c) in enumerate(proj):
-        msgs.append([("<Thanmai> ", T), (f"[{i+1}/11] ", "#aaaaaa"), (n + ": ", c), (d, T)])
+        msgs.append([("<Thanmai> ", T), (f"[{i+1}/{len(proj)}] ", "#aaaaaa"), (n + ": ", c), (d, T)])
     msgs += [[("<Thanmai> ", T), ("published: ", "#aaaaaa"), ("breast cancer prediction with XAI + ResNet101 (IEEE 2025)", "#55ffff")],
              [("<Thanmai> ", T), ("published: ", "#aaaaaa"), ("liver cirrhosis staging with tuned ML models (IEEE 2025)", "#55ffff")],
              [("[Server] Thanmai A has made the advancement [Founder]", "#55ff55")]]
@@ -221,6 +224,7 @@ def chat():
 
 # ---- inventory tooltip cards -----------------------------------------
 P = [
+ ("opentan-studio", "OpenTan Studio", "Image, video and 3D studio run by any coding agent: ChatGPT stills, Google Flow video, Blender 3D.", "Claude · Codex · Qwen · local", "JavaScript", "tmark", "#55aaff"),
  ("multimodal-graph-rag--datamesh", "Multimodal Graph RAG", "Knowledge graphs, vector search and LLM retrieval over multi-modal embeddings.", "FastAPI · React · Docker", "JavaScript", "compass", "#55ffff"),
  ("universal-optimizer", "Universal Optimizer", "Quantize, prune, distill and deploy any LLM, Transformer or CNN to laptop, cloud, mobile or edge.", "Quantize · Prune · Distill", "Python", "pickaxe", "#ffff55"),
  ("AR-Plant-Health-Checker", "AR Plant Health Checker", "Real-time plant disease detection from a browser camera with a 3D AR overlay.", "97.3% accuracy (DenseNet121)", "JavaScript", "sapling", "#55ff55"),
@@ -333,7 +337,7 @@ def stack():
 def toasts():
     """Advancements: two endless rows scrolling in opposite directions. Every line is backed by a repo, paper or page."""
     items = [("star", "Published Author", "2 IEEE papers in 2025"),
-             ("sword", "Shipper", "11 projects built and released"),
+             ("sword", "Shipper", "12 projects built and released"),
              ("steve", "Founder", "Founder of FoxynAI"),
              ("book", "Healthcare AI", "Breast cancer + liver cirrhosis ML"),
              ("pickaxe", "Model Miner", "Quantize, prune, distill any model"),
@@ -344,7 +348,8 @@ def toasts():
              ("feather", "Bio Inspired", "Hawk, locust, dragonfly pursuit"),
              ("potion", "Quality Gate", "Wine ML pipeline, 94% accuracy"),
              ("eye", "Local First", "No paid APIs, runs on a laptop"),
-             ("paper", "Open Source", "11 public repositories on GitHub"),
+             ("paper", "Open Source", "12 open-source projects on GitHub")
+             , ("tmark", "OpenTan", "Studio run by any coding agent"),
              ("eye", "OSINT Ops", "40+ platforms, 75+ username variants"),
              ("clock", "News Hound", "7 source types, crawled and scored"),
              ("star", "Music Maker", "16 CC BY tracks matched by BPM"),
@@ -442,6 +447,40 @@ def foxynai():
     style = ".bd{animation:g 3s ease-in-out infinite}@keyframes g{50%{stroke:#7a3fd1}}"
     save("foxynai-brand.svg", b, W, H, style)
 
+def opentan():
+    """OpenTan card: the owner's open-source library. The T is the OpenTan mark (scripts/opentan-T.svg)."""
+    import base64
+    logo = base64.b64encode(open(os.path.join(os.path.dirname(__file__), "opentan-T.svg"), "rb").read()).decode()
+    W, H = 900, 248
+    b = f'<rect width="{W}" height="{H}" fill="#100010"/>'
+    b += f'<rect class="bd" x="4" y="4" width="{W-8}" height="{H-8}" fill="none" stroke="#123a7a" stroke-width="4"/>'
+    lx, ly, lw, lh = 28, 28, 168, 192
+    b += f'<rect x="{lx-3}" y="{ly-3}" width="{lw+6}" height="{lh+6}" fill="#0e0e10"/><rect x="{lx}" y="{ly}" width="{lw}" height="{lh}" fill="#eef4fd"/>'
+    b += f'<image x="{lx+22}" y="{ly+22}" width="{lw-44}" height="{lh-44}" preserveAspectRatio="xMidYMid meet" href="data:image/svg+xml;base64,{logo}"/>'
+    b += f'<rect x="{lx}" y="{ly+lh-3}" width="{lw}" height="3" fill="#c9d8ef"/><rect x="{lx+lw-3}" y="{ly}" width="3" height="{lh}" fill="#c9d8ef"/>'
+    x0 = 224
+    b += pixels("OPENTAN", x0, 36, 5, "#55aaff", "#0a2a5a", 3)
+    b += f'<text x="{x0+2}" y="104" font-size="16" fill="#e0e0e0" {MONO}>My open-source library. First release:</text>'
+    b += f'<text x="{x0+2}" y="126" font-size="16" fill="#e0e0e0" {MONO}>OpenTan Studio, run by any coding agent.</text>'
+    x = x0 + 2
+    for t in ("Image · Video · 3D", "Any coding agent", "MIT licence"):
+        w = len(t) * 7.6 + 22
+        b += f'<rect x="{x:.0f}" y="146" width="{w:.0f}" height="26" fill="#0a1a33" stroke="#55aaff" stroke-width="2"/><text x="{x+11:.0f}" y="164" font-size="12" fill="#7ebeff" {MONO}>{esc(t)}</text>'
+        x += w + 8
+    fx0 = 724
+    b += f'<rect x="{fx0}" y="28" width="148" height="92" fill="#1a1a1a" stroke="#4a4a4a" stroke-width="2"/><rect x="{fx0}" y="28" width="148" height="4" fill="#8a8a8a"/>'
+    b += slot(fx0 + 12, 44, 48) + spr("tmark", fx0 + 16, 48, 5)
+    b += f'<text x="{fx0+70}" y="62" font-size="10" fill="#55aaff" {MONO}>BY</text>'
+    b += f'<text x="{fx0+70}" y="80" font-size="13" font-weight="bold" fill="#ffffff" {MONO}>Thanmai A</text>'
+    b += f'<text x="{fx0+12}" y="108" font-size="10" fill="#aaaaaa" {MONO}>Claude · Codex · Qwen</text>'
+    for i, (txt, lab) in enumerate((("thanmaiashok/opentan-studio", "REPO"), ("node bin/studio.mjs doctor", "START"))):
+        bx = x0 + i * 322
+        b += f'<rect x="{bx}" y="188" width="306" height="30" fill="#0c0c0e" stroke="#4a4a4a" stroke-width="2"/><rect x="{bx}" y="188" width="62" height="30" fill="#26272a"/>'
+        b += f'<text x="{bx+10}" y="207" font-size="10" fill="#55aaff" {MONO}>{lab}</text>'
+        b += f'<text x="{bx+72}" y="207" font-size="12" fill="#e0e0e0" {MONO}>{esc(txt)}</text>'
+    style = ".bd{animation:g 3s ease-in-out infinite}@keyframes g{50%{stroke:#2f7fe0}}"
+    save("opentan-brand.svg", b, W, H, style)
+
 # ---- section divider: stone strip with a gold emblem and a gliding highlight ----
 def divider():
     rnd = random.Random(11)
@@ -467,12 +506,12 @@ def divider():
     save("divider.svg", b, W, H, style)
 
 if __name__ == "__main__":
-    header(); chat(); stack(); toasts(); foxynai(); footer(); pubs(); divider()
+    header(); chat(); stack(); toasts(); foxynai(); opentan(); footer(); pubs(); divider()
     for n, t, i in [("banner-projects.svg", "INVENTORY: PROJECTS", "pickaxe"), ("banner-papers.svg", "ENCHANTED BOOKS: PAPERS", "book"),
                     ("banner-tech.svg", "TECH STACK", "sword"), ("banner-activity.svg", "ACTIVITY: CONTRIBUTIONS", "emerald"),
-                    ("banner-about.svg", "SERVER CHAT", "paper"), ("banner-adv.svg", "ADVANCEMENTS", "star"), ("banner-foxynai.svg", "FOUNDER: FOXYNAI", "star")]:
+                    ("banner-about.svg", "SERVER CHAT", "paper"), ("banner-adv.svg", "ADVANCEMENTS", "star"), ("banner-foxynai.svg", "FOUNDER: FOXYNAI", "star"), ("banner-opentan.svg", "OPEN SOURCE: OPENTAN", "tmark")]:
         banner(n, t, i)
-    for n, t in [("btn-foxynai.svg", "FOXYNAI"), ("btn-linkedin.svg", "LINKEDIN"), ("btn-email.svg", "EMAIL"), ("btn-instagram.svg", "INSTAGRAM"), ("btn-site.svg", "WEBSITE"), ("btn-foxgh.svg", "GITHUB")]:
+    for n, t in [("btn-foxynai.svg", "FOXYNAI"), ("btn-linkedin.svg", "LINKEDIN"), ("btn-email.svg", "EMAIL"), ("btn-instagram.svg", "INSTAGRAM"), ("btn-site.svg", "WEBSITE"), ("btn-foxgh.svg", "GITHUB"), ("btn-opentan.svg", "OPENTAN STUDIO")]:
         button(n, t)
     for i, p in enumerate(P):
         card(i, *p)

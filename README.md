@@ -15,9 +15,21 @@
 
 <p align="center"><img src="assets/v6-divider.svg" width="100%" alt=""/></p>
 
+<img src="assets/v6-banner-opentan.svg" width="100%" alt="Open source: OpenTan"/>
+<img src="assets/v6-gap.svg" width="1" height="10" alt=""/>
+<a href="https://github.com/thanmaiashok/opentan-studio"><img src="assets/opentan-studio.webp" width="100%" alt="OpenTan Studio: the word OpenTan writes itself in blue glass, folds into the T mark, and the title OpenTan Studio appears"/></a>
+<img src="assets/v6-gap.svg" width="1" height="10" alt=""/>
+<a href="https://github.com/thanmaiashok/opentan-studio"><img src="assets/v6-opentan-brand.svg" width="100%" alt="OpenTan: my open-source library. First release: OpenTan Studio, an image, video and 3D studio run by any coding agent. MIT licence."/></a>
+
+<p align="center"><img src="assets/v6-gap.svg" width="1" height="4" alt=""/></p>
+
+<a href="https://github.com/thanmaiashok/opentan-studio"><img src="assets/v6-btn-opentan.svg" alt="OpenTan Studio on GitHub" height="36"/></a>
+
+<p align="center"><img src="assets/v6-divider.svg" width="100%" alt=""/></p>
+
 <img src="assets/v6-banner-adv.svg" width="100%" alt=""/>
 <img src="assets/v6-gap.svg" width="1" height="10" alt=""/>
-<img src="assets/v6-advancements-marquee.svg" width="100%" alt="Advancements: Published Author, Shipper, Founder, Healthcare AI, Model Miner, Green Thumb, Market Watcher, Graph Explorer, Automation, Bio Inspired, Quality Gate, Local First, Open Source, OSINT Ops, News Hound, Music Maker, Kafka Wrangler, Turbine Tuner, Da Vinci Mode, Ensemble Master, Forked, Docker Captain, Web Presence, Full Stack"/>
+<img src="assets/v6-advancements-marquee.svg" width="100%" alt="Advancements: Published Author, OpenTan, Shipper, Founder, Healthcare AI, Model Miner, Green Thumb, Market Watcher, Graph Explorer, Automation, Bio Inspired, Quality Gate, Local First, Open Source, OSINT Ops, News Hound, Music Maker, Kafka Wrangler, Turbine Tuner, Da Vinci Mode, Ensemble Master, Forked, Docker Captain, Web Presence, Full Stack"/>
 
 <p align="center"><img src="assets/v6-divider.svg" width="100%" alt=""/></p>
 
@@ -33,22 +45,23 @@
 <p align="center"><img src="assets/v6-divider.svg" width="100%" alt=""/></p>
 
 <img src="assets/v6-banner-projects.svg" width="100%" alt=""/>
-<p align="center"><a href="https://github.com/thanmaiashok/multimodal-graph-rag--datamesh"><img src="assets/v6-card-multimodal-graph-rag--datamesh.svg" width="49%" alt="multimodal-graph-rag--datamesh"/></a>
-<a href="https://github.com/thanmaiashok/universal-optimizer"><img src="assets/v6-card-universal-optimizer.svg" width="49%" alt="universal-optimizer"/></a></p>
+<p align="center"><a href="https://github.com/thanmaiashok/opentan-studio"><img src="assets/v6-card-opentan-studio.svg" width="49%" alt="opentan-studio"/></a>
+<a href="https://github.com/thanmaiashok/multimodal-graph-rag--datamesh"><img src="assets/v6-card-multimodal-graph-rag--datamesh.svg" width="49%" alt="multimodal-graph-rag--datamesh"/></a></p>
 
-<p align="center"><a href="https://github.com/thanmaiashok/AR-Plant-Health-Checker"><img src="assets/v6-card-AR-Plant-Health-Checker.svg" width="49%" alt="AR-Plant-Health-Checker"/></a>
-<a href="https://github.com/thanmaiashok/stock-bot"><img src="assets/v6-card-stock-bot.svg" width="49%" alt="stock-bot"/></a></p>
+<p align="center"><a href="https://github.com/thanmaiashok/universal-optimizer"><img src="assets/v6-card-universal-optimizer.svg" width="49%" alt="universal-optimizer"/></a>
+<a href="https://github.com/thanmaiashok/AR-Plant-Health-Checker"><img src="assets/v6-card-AR-Plant-Health-Checker.svg" width="49%" alt="AR-Plant-Health-Checker"/></a></p>
 
-<p align="center"><a href="https://github.com/thanmaiashok/news-intelligence"><img src="assets/v6-card-news-intelligence.svg" width="49%" alt="news-intelligence"/></a>
-<a href="https://github.com/thanmaiashok/reelforge"><img src="assets/v6-card-reelforge.svg" width="49%" alt="reelforge"/></a></p>
+<p align="center"><a href="https://github.com/thanmaiashok/stock-bot"><img src="assets/v6-card-stock-bot.svg" width="49%" alt="stock-bot"/></a>
+<a href="https://github.com/thanmaiashok/news-intelligence"><img src="assets/v6-card-news-intelligence.svg" width="49%" alt="news-intelligence"/></a></p>
 
-<p align="center"><a href="https://github.com/thanmaiashok/NeuroReflex-X"><img src="assets/v6-card-NeuroReflex-X.svg" width="49%" alt="NeuroReflex-X"/></a>
-<a href="https://github.com/thanmaiashok/vinci-ai"><img src="assets/v6-card-vinci-ai.svg" width="49%" alt="vinci-ai"/></a></p>
+<p align="center"><a href="https://github.com/thanmaiashok/reelforge"><img src="assets/v6-card-reelforge.svg" width="49%" alt="reelforge"/></a>
+<a href="https://github.com/thanmaiashok/NeuroReflex-X"><img src="assets/v6-card-NeuroReflex-X.svg" width="49%" alt="NeuroReflex-X"/></a></p>
 
-<p align="center"><a href="https://github.com/thanmaiashok/social-profile-intelligence"><img src="assets/v6-card-social-profile-intelligence.svg" width="49%" alt="social-profile-intelligence"/></a>
-<a href="https://github.com/thanmaiashok/micro-wind-analyzer"><img src="assets/v6-card-micro-wind-analyzer.svg" width="49%" alt="micro-wind-analyzer"/></a></p>
+<p align="center"><a href="https://github.com/thanmaiashok/vinci-ai"><img src="assets/v6-card-vinci-ai.svg" width="49%" alt="vinci-ai"/></a>
+<a href="https://github.com/thanmaiashok/social-profile-intelligence"><img src="assets/v6-card-social-profile-intelligence.svg" width="49%" alt="social-profile-intelligence"/></a></p>
 
-<p align="center"><a href="https://github.com/thanmaiashok/wine-quality-mlpipeline-DML"><img src="assets/v6-card-wine-quality-mlpipeline-DML.svg" width="49%" alt="wine-quality-mlpipeline-DML"/></a></p>
+<p align="center"><a href="https://github.com/thanmaiashok/micro-wind-analyzer"><img src="assets/v6-card-micro-wind-analyzer.svg" width="49%" alt="micro-wind-analyzer"/></a>
+<a href="https://github.com/thanmaiashok/wine-quality-mlpipeline-DML"><img src="assets/v6-card-wine-quality-mlpipeline-DML.svg" width="49%" alt="wine-quality-mlpipeline-DML"/></a></p>
 
 <p align="center"><img src="assets/v6-divider.svg" width="100%" alt=""/></p>
 
